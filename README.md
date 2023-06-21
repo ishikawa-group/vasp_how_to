@@ -11,3 +11,4 @@
 * 以下は適宜
   + tsubame.md
   + ase.md
+  + python.md
