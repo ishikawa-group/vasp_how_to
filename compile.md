@@ -1,10 +1,12 @@
 # VASPのコンパイル
 * Vienna ab initio simulation package (VASP)をリモート環境でコンパイルする
 * コンパイルとは、ソースコードからバイナリーファイル(実行可能ファイル)を生成すること
+* 実行可能ファイルが用意されていて、それを使う場合はこの項目は飛ばしてよい
 
 ## ソースコードの入手
+* VASPのソースコードを入手する
 1. Vienna大学?に料金を支払ってVASPのポータルサイトのアカウントを取得
-2. ポータルサイトからvaspとpotentialの.tar.gzファイルをダウンロード
+2. ポータルサイトからvaspとpotentialの.tar.gzファイルをダウンロードしてくる
 
 ## コンパイル
 1. リモート環境にvaspとpotentialのtar.gzをコピーする: `scp vasp.5.4.4.tar.gz remote:/home/your_vasp_dir`
