@@ -1,6 +1,7 @@
 # エネルギー計算
 * まずCO分子のエネルギーを計算してみる
-* 必要なファイルは`INCAR`, `POSCAR`, `KPOINTS`, `POTCAR`
+* ここで言うエネルギーとは、Schorodinger方程式から得られる"電子エネルギー + 核間反発エネルギー"のこと
+* 必要なファイルは`INCAR`, `POSCAR`, `KPOINTS`, `POTCAR`の4つなのでこれを作成する
 * これらを新規ディレクトリに入れて、そのディレクトリ内で実行することにする
 * https://www.vasp.at/wiki/index.php/CO を参考
 
