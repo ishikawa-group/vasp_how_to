@@ -3,7 +3,8 @@
 * ここで言うエネルギーとは、Schorodinger方程式から得られる"電子エネルギー + 核間反発エネルギー"のこと
 * 必要なファイルは`INCAR`, `POSCAR`, `KPOINTS`, `POTCAR`の4つなのでこれを作成する
 * これらを新規ディレクトリに入れて、そのディレクトリ内で実行することにする
-* https://www.vasp.at/wiki/index.php/CO を参考
+* (もしVASPの実行ファイルが手元のPCにあるのであれば)上記のファイルがあるディレクトリで`vasp`とすれば、計算が実行される(`vasp`のパスが通っている場合)。ただし、ほとんどの場合はjobとして実行するので、このように実行することはあまりない
+* 本例題はvaspwiki https://www.vasp.at/wiki/index.php/CO を参考にした
 
 ## INCAR
 ```
