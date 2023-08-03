@@ -7,14 +7,19 @@
 * 本例題はvaspwiki https://www.vasp.at/wiki/index.php/CO を参考にした
 
 ## INCAR
+* VASPの計算条件を指示するファイルで、キーワードと変数のペアを入力する
+* 変数は、integer(整数)、float(浮動小数点実数)、logical(.TRUE. or .FALSE.)などがある
+* キーワードの意味については`incar.md`で詳しく解説するので、今はとりあえず下のようなファイルとする
 ```
 SYSTEM = CO molecule in a box
-ISMEAR = 0 ! Gaussian smearing
-NSW = 5    ! 5 ionic steps
-IBRION = 2 ! use the conjugate gradient algorithm
+ISMEAR = 0  ! Gaussian smearing
+NSW    = 5  ! 5 ionic steps
+IBRION = 2  ! use the conjugate gradient algorithm
 ```
 
 ## POSCAR
+* 原子の位置を与えるファイル
+* 単位セル(unit cell)の大きさ、元素名とその個数、各元素のXYZ座標という順のセクションとなっている
 ```
 CO molecule in a box
  1.0          ! universal scaling parameters
@@ -28,6 +33,7 @@ cart          ! positions in cartesian coordinates
  ```
 
 ## KPOINTS
+* 逆格子空間を数値積分で求める際の、k点の個数と位置を記述する
 ```
 Gamma-point only
  0
@@ -37,13 +43,15 @@ Monkhorst Pack
  ```
  
 ## POTCAR
+* 擬ポテンシャル(pseudopotential)の情報を書き込む
+* VASPでは、特にprojector augumented-wave (PAW)という呼び方をする
 * VASPのインストールディレクトリにあるファイルから以下のコマンドで生成する
 `cat  .../O/POTCAR  .../C POTCAR  > POTCAR`
  * 上記が準備できたら、`vasp_std`を実行
 
 # ジョブの実行
 * 以下ではTSUBAMEを想定する
-* 計算機センター等ではjob queueing systemというのをよく使う。これは、空いている計算機にジョブを実行させるためのシステム
+* 計算機センター等ではjob queueing systemというのをよく使う。これは、空いている計算機にジョブを実行させるためのシステムである
 * ログインノードでジョブをsubmitして、計算ノードで計算を実行する。したがって計算ノードにログインする必要がない
 * 何をして欲しいかをジョブスクリプトと呼ばれるファイル(.sh形式)に記述して、それを計算ノードに実行してもらう
 * したがってジョブスクリプトファイルを書く必要がある
@@ -53,9 +61,9 @@ Monkhorst Pack
 ## ジョブスクリプト
 * MPIと呼ばれる並列計算を可能にする機能を利用する
 * https://helpdesk.t3.gsic.titech.ac.jp/manuals/handbook.ja/jobs/ のMPI並列、intel-mpi利用をベースにVASP実行用に編集する
-* 以下のファイルを`run.sh`とする
+* 以下のようなファイルを`run.sh`を作成する。詳細は意味については、今はわからなくても大丈夫
 
-```
+```bash
 #!/bin/sh
 #$ -cwd
 # 資源タイプF 1ノードを使用
@@ -79,10 +87,12 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 
 ## ジョブの投入
 * qsub: `qsub -g [TSUBAME_group] run.sh`
-* TSUBAME_group: 自分のTSUBAMEグループ名。ただしお試しモードでは必要ないので書かないことにする
+ + TSUBAME_group: 自分のTSUBAMEグループ名。ただしお試しモードでは必要ないので書かないことにする
+* 上記までがVASPのジョブ投入になる。うまく実行できていると、アウトプットファイル(OUTCARなど)が出てくる
 
-## ジョブの状態確認
+## 以下は必要に応じて使う
+### ジョブの状態確認
 * qstatコマンドでジョブの状態を確認できる: `qstat [option]`
 
-## ジョブの中止
+### ジョブの中止
 * qdel: `qdel JOB_ID`
