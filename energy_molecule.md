@@ -87,7 +87,7 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 
 ## ジョブの投入
 * qsub: `qsub -g [TSUBAME_group] run.sh`
- + TSUBAME_group: 自分のTSUBAMEグループ名。ただしお試しモードでは必要ないので書かないことにする
+　 + TSUBAME_group: 自分のTSUBAMEグループ名。ただしお試しモードでは必要ないので書かないことにする
 * 上記までがVASPのジョブ投入になる。うまく実行できていると、アウトプットファイル(OUTCARなど)が出てくる
 
 ## 以下は必要に応じて使う
