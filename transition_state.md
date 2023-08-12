@@ -7,7 +7,7 @@
 * 以下を準備する
 1. reactantとproductの構造を求める。各々、構造最適化によって求めること --> POSCAR1, POSCAR2とし同じディレクトリに置く
 2. reactantとproductの間の構造を作成する。この中間構造はNEB計算の初期値となるが、適当に両点を補間した構造でよい。ここでは、例として4つの中間構造を作るとする(これをimage数と呼ぶ)
-    `nebmake.pl POSCAR1 POSCAR2 4`
+    * 以下を実行: `nebmake.pl POSCAR1 POSCAR2 4`
 4. VASPのディレクトリを用意する。4点の場合、`00`, `01` ... `05`が必要。ここで`00`にはreactant、`05`にはproductの構造を置く
 5. INCARファイルを次のように作成する
 ```
