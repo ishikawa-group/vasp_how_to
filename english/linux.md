@@ -1,4 +1,9 @@
-# Linux環境の構築
+# Setting up the Linux environment
+* DFT calculations are computational costly, so it is not a good idea to do the calcuation on your desktop/laptop.
+* So we usually *submit* our computational procedure as a *job* in the remote environments or supercomputers.
+* To use the remote computers, we need to *log-in* from the computer you are using now.
+* We use **ssh** communication protocol for this purpose.
+
 * DFTなどの第一原理計算ソフトウェアは計算負荷が大きいので、手元のPCで実行するのは限界がある。そこで、大学の計算機センターやクラウド上のPCにログインして実行する
 * これらリモートの環境にログインするには、sshという通信プロトコルを使う。これはlinuxのコマンドになっている
 * さらにログインしたリモート環境もlinuxで動くので、結局手元のPCにlinux(っぽい)環境を設定してsshでリモートにログインする

@@ -1,4 +1,4 @@
-# Energy calculation
+# Energy calculation (molecule)
 * In this section, we will see how to calculate the energy of molecules. Let's take a carbon monooxide (CO) molecule as an example.
 * The energy here means the *total energy*, which is the sum of the *electronic energy* and the *nuclear repulsion energy*. The total energy is the energy expectation value of Schroedinger equation (under the Born-Oppenheimer approximation).
 * In VASP, you always need **INCAR**, **POSCAR**, **KPOINTS**, and **POTCAR** files.
@@ -13,8 +13,13 @@
 SYSTEM = CO molecule in a box
 ISMEAR = 0  ! Gaussian smearing
 NSW    = 5  ! 5 ionic steps
-IBRION = 2  ! use the conjugate gradient algorithm
+IBRION = 2  ! Does geometry optimization
 ```
+* The keywords above is just simple examples of the INCAR tags. These mean
+    + `SYSTEM`: A free keyword to identify the calculation.
+    + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
+    + `NSW`: This tag controls the number of ionic steps i.e. geometry optimization steps.
+    + `IBRION`: Controls the motion of ions. IBRION = 2 means geometry optimization is done with conjugate gradient algorithm
 
 ## POSCAR
 * This file gives the element species and positions of atoms.
@@ -49,7 +54,7 @@ cart
 ## KPOINTS
 * This file specifies the number of k-points, used for the reciprocal lattice integration.
 * The details of the k-points will be given elsewhere.
-* The simplest (and computationally cheapest) KPOINTS is the **Gamma-point calculation**.
+* For the isolated atom/molecule calculation, you should use the following KPOINTS file corresponding to the **Gamma-point calculation**.
 ```
 Gamma-point only
 0
@@ -57,23 +62,7 @@ Monkhorst Pack
 1 1 1
 0 0 0
 ```
-* For the bulk calculation,
-```
-bulk
-0
-Monkhorst Pack
-3 3 3
-0 0 0
-```
-* For the surface calculation, just one k-point is OK for the non-periodic direction. So when the vaccum layer is in the z-direction, following is fine.
-```
-surface
-0
-Monkhorst Pack
-3 3 1
-0 0 0
-```
-* Using more k-points gives higher accuracy, but larger computational cost.
+
 
 ## POTCAR
 * This file has the information of pseudo-potentials of each element.
@@ -87,7 +76,7 @@ Monkhorst Pack
 * When all the files i.e. INCAR, POSCAR, KPOINTS, and POTCAR are made, you can execute the vasp in the directory.
     + `vasp_std >& {output_filename}`
 
-# How to execute job in superconmputers
+# How to execute job in supercomputers
 * Now we will asssume using TSUBAME.
 * The supercomputer usually uses the **job queueing system**, to take control of the calculations of many users. The queing system assigns the jobs to vacant nodes (computers).
 * You need to submit the job in a **login node**, the computer you first login to use the TSUBAME. The computation is done in other nodes, and you do not need to login these computational nodes.
@@ -131,3 +120,17 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 
 ### Stopping or deleting the job
 * qdel: `qdel JOB_ID`
+
+# Analyzing output files
+* OSZICAR: This file contains a summary of the iteration loop.
+* OUTCAR: This file writes down everything about the run.
+
+# Continuing runs
+* There are three important output files: CHGCAR, CONTCAR, and WAVECAR. They are files of the calculated charge densities, the final atomic postions, and the filan wave functions (in a bynary format).
+* A continuous run can be started with the use of these output files.
+
+# more incar tags
+* `ENCUT`: The flag sets a cutoff energy for the plane wave basis set. This should be higher than the maximum value recommended in the POTCAR File (ENMAX).
+* `EDIFF`: This flag sets a stopping criterion for electronic mimimization. The default value is 1.0E-4 (in eV).
+* `ALGO`: This flag sets an electronic minimization algorithm. `VeryFast` or `Fast` is usually fine.
+* `EDIFFG`: This flag sets a stopping criterion for the ionic minimization. Positive value means in the energy (eV), and negative value means in the force (eV/Angstrom).
