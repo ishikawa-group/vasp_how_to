@@ -22,7 +22,7 @@
     from ase.build import fcc111
     from ase.io import write
 
-    surf = fcc111("Pt", size=[3,3,3], vacuum=10.0)
+    surf = fcc111("Pt", a=3.92, size=[3, 3, 3], vacuum=10.0)
     write("POSCAR", surf)
     ```
 * You can check the structure with VESTA, or using `ase gui` if you've installed the ASE.
@@ -47,3 +47,9 @@ Monkhorst Pack
 * Using more k-points gives higher accuracy, but larger computational cost.
 
 # Executing VASP
+* Execution of VASP is the same with the energy calculation of molecule.
+    + edit `run.sh` script (or any name)
+    + `qsub run.sh`
+
+## Exercise
+* In the Pt bulk case using ASE, `a=3.92` in `fcc111` means the lattice constant (size of the unit cell) is 3.92 Angstrom. Change this value to other value (like 3.5 or 4.5) and compare the calculated energy with that of 3.92 Angstrom.

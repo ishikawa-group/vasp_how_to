@@ -11,9 +11,9 @@
 * The minimal INCAR file is something like below. The details will be explained later or see VaspWiki website.
 ```
 SYSTEM = CO molecule in a box
-ISMEAR = 0  ! Gaussian smearing
-NSW    = 5  ! 5 ionic steps
-IBRION = 2  ! Does geometry optimization
+ISMEAR =  0
+NSW    =  0
+IBRION = -1
 ```
 * The keywords above is just simple examples of the INCAR tags. These mean
     + `SYSTEM`: A free keyword to identify the calculation.
@@ -124,6 +124,8 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 # Analyzing output files
 * OSZICAR: This file contains a summary of the iteration loop.
 * OUTCAR: This file writes down everything about the run.
+* The most important output is the **total energy** of this system.
+  This is found in line `energy without entropy = -857.31883692  energy(sigma->0) = -857.35037185` in OUTCAR. Among these values, use the latter one (i.e. `energy(sigma->0)`). The energy is defined in eV (electron volt) unit.
 
 # Continuing runs
 * There are three important output files: CHGCAR, CONTCAR, and WAVECAR. They are files of the calculated charge densities, the final atomic postions, and the filan wave functions (in a bynary format).
@@ -134,3 +136,6 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 * `EDIFF`: This flag sets a stopping criterion for electronic mimimization. The default value is 1.0E-4 (in eV).
 * `ALGO`: This flag sets an electronic minimization algorithm. `VeryFast` or `Fast` is usually fine.
 * `EDIFFG`: This flag sets a stopping criterion for the ionic minimization. Positive value means in the energy (eV), and negative value means in the force (eV/Angstrom).
+
+## Exercise
+* For CO molecule, use different smearing algorithm by specifying `ISMEAR = 1` and see the energy change.
