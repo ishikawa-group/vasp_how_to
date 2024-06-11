@@ -5,7 +5,7 @@
 
 ## ソースコードの入手
 * VASPのソースコードを入手する
-1. Vienna大学?に料金を支払ってVASPのポータルサイトのアカウントを取得
+1. VASP社に料金を支払ってVASPのポータルサイトのアカウントを取得
 2. ポータルサイトからvaspとpotentialの.tar.gzファイルをダウンロードしてくる
 
 ## コンパイル
@@ -22,6 +22,8 @@
   ```
 4. `cd vasp.5.4.4`
 5. intelコンパイラを利用可能にする: `module load intel; module load intel-mpi`
-6. makefileをコピー: `cp arch/makefile.include.linux_intel  ./makefile.include`
+6. makefileをコピー
+    * Intel one apiコンパイラ: `cp arch/makefile.include.oneapi  ./makefile.include`
+    * Intelコンパイラ(古め): `cp arch/makefile.include.linux_intel  ./makefile.include`
 7. コンパイル: `make all`
 8. `bin`ディレクトリに`vasp_std`ができる。これがVASPの実行ファイルになる
