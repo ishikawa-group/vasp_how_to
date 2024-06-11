@@ -9,5 +9,5 @@
 
 * Followings should be seen if necessary:
     + [tsubame.md (jumps to a file in other repository)](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
-    + compile.md
+    + [compile.md](./japanese/compile.md)
     
