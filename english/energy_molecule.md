@@ -2,8 +2,8 @@
 * In this section, we will see how to calculate the energy of molecules. Let's take a carbon monooxide (CO) molecule as an example.
 * The energy here means the *total energy*, which is the sum of the *electronic energy* and the *nuclear repulsion energy*. The total energy is the energy expectation value of Schroedinger equation (under the Born-Oppenheimer approximation).
 * In VASP, you always need **INCAR**, **POSCAR**, **KPOINTS**, and **POTCAR** files.
-* These files should be stored in the same directory, and **one directry should correspond to one VASP calculation**. The VASP command should be executed in that directory.
-* The example here is takne from the VaspWiki: https://www.vasp.at/wiki/index.php/CO
+* These files should be stored in the same directory, and **one directry corresponds to one VASP calculation**. The VASP command should be executed in that directory.
+* The example here is taken from the VaspWiki: https://www.vasp.at/wiki/index.php/CO
 
 ## INCAR
 * This file specifies the computational condition in VASP. In this file, you need to specify tag-variable pairs.
@@ -19,14 +19,14 @@ IBRION = -1
     + `SYSTEM`: A free keyword to identify the calculation.
     + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
     + `NSW`: This tag controls the number of ionic steps i.e. geometry optimization steps.
-    + `IBRION`: Controls the motion of ions. IBRION = 2 means geometry optimization is done with conjugate gradient algorithm
+    + `IBRION`: Controls the motion of ions. IBRION = -1 means energy calculation at given geometry.
 
 ## POSCAR
 * This file gives the element species and positions of atoms.
 * POSCAR consists of three parts:
     1. The top part gives the size of the **unit cell**.
-    2. The middle part gives the number of elements.
-    3. The latter part gives x-, y-, and z-coordinates of atoms.
+    2. The middle part gives the **number of each elements**.
+    3. The last part gives **x-, y-, and z-coordinates** of atoms.
 ```
 CO molecule in a box  ! Title
 1.0          ! universal scaling parameters
@@ -138,4 +138,5 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 * `EDIFFG`: This flag sets a stopping criterion for the ionic minimization. Positive value means in the energy (eV), and negative value means in the force (eV/Angstrom).
 
 ## Exercise
-* For CO molecule, use different smearing algorithm by specifying `ISMEAR = 1` and see the energy change.
+1. For CO molecule, use different smearing algorithm by specifying `ISMEAR = 1` and see the energy change. This setting uses Methfessel-Paxton scheme for the smearing. But for molecules, you don't have to use this setting.
+2. For CO molecule, change the position of the second atom (O atom, `0.0 0.0 1.1` in the above example) to 0.9, 1.0, 1.2, and 1.3 and see the change in the energy. Plot the energy using Excel (or any), and draw the curve. Confirm that the energy minimum is close to the experimental value of C-O distance in CO (1.12 Angstrom).
