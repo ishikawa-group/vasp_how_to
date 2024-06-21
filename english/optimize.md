@@ -20,7 +20,6 @@ Cartesian
   1.9615800  1.9615800  0.0000000
   0.0000000  1.9615800  1.9615800
   1.9615800  0.0000000  1.9615800
-
 ```
 
 ## INCAR
@@ -85,4 +84,5 @@ Cartesian
 * `ase gui` of this POSCAR distinguishes fixed and free atoms (with check mark for atoms) while vesta does not make distinction.
 * After changing POSCAR, execute VASP and see the relaxed structure.
 
-## 
+## Adsorption
+* 
