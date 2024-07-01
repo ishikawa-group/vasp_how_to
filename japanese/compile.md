@@ -35,7 +35,7 @@
 
 1. vtstcode.tar.gzを入手する: https://theory.cm.utexas.edu/vtsttools/download.html
 2. vtstcode6.4のファイルをsrc以下にコピーする
-  * vasp6.4.2ディレクトリで`cp ../vtstcode.6.4.2/* ./src`
+  * vasp6.4.2ディレクトリで`cp -r ../vtstcode-199/vtstcode6.4/* ./src/`
 3. `src/main.F`の三箇所を以下のように書き換える
   a.
     ```fortran
