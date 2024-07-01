@@ -37,10 +37,10 @@
 2. vtstcode6.4のファイルをsrc以下にコピーする
   * vasp6.4.2ディレクトリで`cp -r ../vtstcode-199/vtstcode6.4/* ./src/`
 3. `src/main.F`の三箇所を以下のように書き換える
-  a.
+    a.
     ```fortran
     CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
-        LATT_CUR%A,LATT_CUR%B,IO%IU6)
+         LATT_CUR%A,LATT_CUR%B,IO%IU6)
     ```
     ↓
     ```fortran
@@ -82,7 +82,8 @@
     ```
     LIB= lib parser pyamff_fortran
     ```
-6. `make all`
+6. `make veryclean`
+7. `make all`
 
 * vaspの元々のソースコードの`main.F`にある`subroutine chain_stress`をvtstの`chain.F`に貼り付けてコンパイルすることもできるので、こちらのほうが良いかもしれないが`ISIF>3`でMD計算をしなければ問題ないと思う
 * 参考: https://theory.cm.utexas.edu/vtsttools/installation.html
