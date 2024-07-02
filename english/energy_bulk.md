@@ -1,33 +1,41 @@
 # Energy calculation (bulk and surface)
 * In this section, we will see how to do the energy calculation of the bulk material and the surface of the bulk material.
-* Please see *the energy calculation for molecules* first.
+* Please see [the energy calculation for molecules](./energy_molecule.md) if not yet.
 * The bulk material is crystal surface, which is periodic in three dimensions (i.e. x-, y-, and z-directions).
-* On the other hand, the surface loses one periodic direction. Usually this axis is set as z-direction.
+* If you want to do calculations for surfaces, the situation is a little different because the surface loses one periodic direction. Usually this axis is set as z-direction.
 * To cut the periodicity of z-direction, a vacant region called **vacuum layer** in inserted in the surface calculaiton.
 
 # Downloading CIF files
 * To do the bulk/surface calcuation, Crystal information file (CIF) file is often needed.
 * The CIF file can be downloaded from **Materials project**, **ICSD**, or others.
+* Here, a simple CIF file (`Pt.cif`) is prepared so please use it.
 * The CIF file contains the information of atomic position and unit cell information.
 
 # Making POSCAR file
 ## VESTA
-* VESTA is the free software for visualization and editing the molecular/bulk/surface structure.
+* VESTA is the free software for visualization and editing the molecular/bulk/surface structure: https://jp-minerals.org/vesta/jp/
 * You can visualize CIF, POSCAR, xyz (and other) files with VESTA.
-* The surface file can be made with VESTA, but it is rather complicated. So we will use Atomic simulation environment (ASE) instead.
 
-## ASE
-* To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following python script.
-    ```python{cmd}
-    from ase.build import fcc111
-    from ase.io import write
+### Bulk calculation
+* To make the POSCAR file for bulk calculation, open the CIF file and then
+    1. `File` -> `Export Data` and then choose `VASP file` in `File type`.
+    2. Any name is OK.
+    3. Either "fractional coordinate" or "Cartesian coordinate" is OK.
+    4. Rename the file to `POSCAR`.
 
-    surf = fcc111("Pt", a=3.92, size=[3, 3, 3], vacuum=10.0)
-    write("POSCAR", surf)
-    ```
-* You can check the structure with VESTA, or using `ase gui` if you've installed the ASE.
+### Surface calculation
+* It is possible to make the surface file with VESTA, but it is rather complicated. So we will use Atomic simulation environment (ASE) instead.
 
-## k-ponits
+#### ASE
+* To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following Python command (or make a `.py` script and execute).
+    1. `python`
+    2. `>>> from ase.io import read, write`
+    3. `bulk = read("Pt.cif")`
+    4. `write("POSCAR", bulk)`
+    5. `quit()`
+* You can check the structure with VESTA, or using `ase gui POSCAR` if you've installed the ASE.
+
+## KPOINTS
 * For the bulk calculation,
 ```
 bulk
@@ -45,6 +53,9 @@ Monkhorst Pack
 0 0 0
 ```
 * Using more k-points gives higher accuracy, but larger computational cost.
+
+## POTCAR
+* Do not forget to make POTCAR file by `cat {POTCAR_directory}/Pt/POTCAR > POTCAR`.
 
 # Executing VASP
 * Execution of VASP is the same with the energy calculation of molecule.
