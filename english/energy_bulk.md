@@ -11,29 +11,58 @@
 * Here, a simple CIF file (`Pt.cif`) is prepared so please use it.
 * The CIF file contains the information of atomic position and unit cell information.
 
-# Making POSCAR file
-## VESTA
+# Making input files
+* Similar to the calculations for molecules, we need to make `POSCAR`, `POTCAR`, `INCAR`, and `KPOINTS` files.
+
+## POSCAR
+### VESTA
 * VESTA is the free software for visualization and editing the molecular/bulk/surface structure: https://jp-minerals.org/vesta/jp/
 * You can visualize CIF, POSCAR, xyz (and other) files with VESTA.
 
-### Bulk calculation
+#### Bulk
 * To make the POSCAR file for bulk calculation, open the CIF file and then
     1. `File` -> `Export Data` and then choose `VASP file` in `File type`.
     2. Any name is OK.
     3. Either "fractional coordinate" or "Cartesian coordinate" is OK.
     4. Rename the file to `POSCAR`.
 
-### Surface calculation
+#### Surface
 * It is possible to make the surface file with VESTA, but it is rather complicated. So we will use Atomic simulation environment (ASE) instead.
 
-#### ASE
-* To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following Python command (or make a `.py` script and execute).
+### ASE
+#### Bulk
+* To make the POSCAR file for bulk, simply execute the following Python command (or make a `.py` script and execute).
     1. `python`
     2. `>>> from ase.io import read, write`
     3. `bulk = read("Pt.cif")`
     4. `write("POSCAR", bulk)`
     5. `quit()`
 * You can check the structure with VESTA, or using `ase gui POSCAR` if you've installed the ASE.
+
+#### Surface
+* To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following Python script.
+    ```python{cmd}
+    from ase.io import write
+    from ase.build import fcc111
+
+    surf = fcc111(a=3.92, symbol="Pt", size=[2, 2, 4], vacuum=10.0)
+    write("POSCAR", surf)
+    ```
+* You can check the structure with VESTA, or using `ase gui POSCAR` if you've installed the ASE.
+* The above script, using the ASE function `fcc111`, makes the Pt surface with the supercell size of 2x2x4, and introduces the vacuum layer of 10 Angstrom in z-direction. As noted, this vacuum layer is necessary to cut the interaction between upper and lower periodic slabs.
+
+## POTCAR
+* Do not forget to make POTCAR file: `cat {POTCAR_directory}/Pt/POTCAR > POTCAR`.
+
+## INCAR
+* Actually, INCAR for bulk/surface calculations can be very similar to those of molecules.
+* However, we are going to use `ISMEAR = 1` instead of `ISMEAR =0` in molecular calculation. This is because Pt is metals, so use of `ISMEAR = 1` is recommended for metallic systems.
+    ```
+    SYSTEM = Pt bulk
+    ISMEAR =  1
+    NSW    =  0
+    IBRION = -1
+    ```
 
 ## KPOINTS
 * For the bulk calculation,
@@ -54,13 +83,11 @@ Monkhorst Pack
 ```
 * Using more k-points gives higher accuracy, but larger computational cost.
 
-## POTCAR
-* Do not forget to make POTCAR file by `cat {POTCAR_directory}/Pt/POTCAR > POTCAR`.
-
-# Executing VASP
+## Executing VASP
 * Execution of VASP is the same with the energy calculation of molecule.
     + edit `run.sh` script (or any name)
     + `qsub run.sh`
 
-## Exercise
-* In the Pt bulk case using ASE, `a=3.92` in `fcc111` means the lattice constant (size of the unit cell) is 3.92 Angstrom. Change this value to other value (like 3.5 or 4.5) and compare the calculated energy with that of 3.92 Angstrom.
+# Exercise
+1. Execute Pt bulk and Pt surface calculation above by yourself.
+2. In the Pt bulk and surface calculations, take the calculated energies and compare the **energy per Pt atom**. Which is lower (lower is more stable), bulk or surface?
