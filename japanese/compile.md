@@ -80,7 +80,7 @@
     ```
     ↓
     ```
-    LIB= lib parser pyamff_fortran
+    LIB=lib parser pyamff_fortran
     ```
 6. `make veryclean`
 7. `make all`
