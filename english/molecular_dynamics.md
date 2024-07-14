@@ -13,29 +13,37 @@
     + $T$: temperature
     + $P$: pressure
     + $\mu$: chemical potential
-* Based on these variables, we have *NVE (microcanonical ensemble)* or *NVT (canonical ensemble)* simulations in VASP.
-* NVT simulation is more usual so we will cover it here.
+* The conserved variables are the variables kept constant during the MD simulation.
+* Usually, three variables are chosen for the MD calculation and that calculation is called like the *NVT ensemble*, by taking conserved variables. In this case, N, V, and T are kept constant during the MD.
+* Two types of ensembles are possible in VASP: *NVE* or *NVT*. These are also called *microcanonical ensemble* or *canonical ensemble*, respectively.
+* NVT simulation is more usual so we will cover it here. Keeping $N$ means we have no generation or elimination of the atoms or electsons (as usual simulations does). Keeping $V$ means cell size is fixed during the simulation. So additional factor is the temperature of the system.
+* To control the temperature, we use *thermostat*. This is the heat bath connected to the system, and it supplies or extract the temperature to adjust the system's temperature to the target temperature value.
 * For $NVT$ simulation, we have two options in VASP.
     1. Berendsen thermostat
     2. Nose-Hoover thermostat
 * One can switch these two by changing the `SMASS` tag in INCAR.
     + `SMASS = -1` for Berendsen
     + `SMASS > 0`  for Nose-Hoover
-* Usually Berendsen thermostat is easier to use but Nose-Hoover is better from theoretical viewpoint. So statr with Berendsen then move to Nose-Hoover afterwards.
+* Usually Berendsen thermostat is easier to use but Nose-Hoover is better from theoretical viewpoint. So we learn to use the Berendsen thermostat in this page.
 * In $NVT$ simulation, you need to specify the temperature by `TEBEG` and `TEEND` tags. These are the target temperature at the beggining of the simulation and end of the simulation. The units are in Kelvin (K).
 
 ## INCAR setting
 * INCAR tag related to the NVT MD simulation is as follows. Other parts can be same with the previous INCAR setting.
+* The full INCAR file can be found in `INCAR_MD`.
 ```
 IBRION =  0
-POTIM  =  1.0  # in femtosecond (fs, 1.0e-15 s)
-SMASS  = -1    # Nose-Hoover for > 0, Berendsen for -1.
+POTIM  =  1.0
+SMASS  = -1
 NSW    =  100
-NBLOCK =  10   # frequency for temperature scaling in Berendsen
+NBLOCK =  10
 TEBEG  =  300
 TEEND  =  300
 ```
-* The full INCAR file can be found in `INCAR_MD`.
+* The MD-specific keywords are as follows:
+    + `POTIM`: In MD calculation, this means the timestep in femtosecond (fs, 1.0e-15 s). Usually, 0.5-2.0 should be used.
+    + `NBLOCK`: Frequency to control the temperature when using Berendsen thermostat. `NBLOCK` = 10 means temperature is scaled every 10 steps during the MD.
+    + `TEBEG`: Target temperature at the beggining of the MD.
+    + `TEEND`: Target temperature at the end of the MD. If this value is different from `TEBEG`, gradual increase/decrease of temperature during MD is taken.
 
 ## POSCAR
 * Any POSCAR file is fine. A file with 32 water molecules are prepared; see `POSCAR_MD`.
