@@ -23,9 +23,10 @@
     2. Nose-Hoover thermostat
 * One can switch these two by changing the `SMASS` tag in INCAR.
     + `SMASS = -1` for Berendsen
-    + `SMASS > 0`  for Nose-Hoover
+    + `SMASS > 0`  for Nose-Hoover (for example, use values from `SMASS = 0.5` to `SMASS = 2.0`)
 * Usually Berendsen thermostat is easier to use but Nose-Hoover is better from theoretical viewpoint. So we learn to use the Berendsen thermostat in this page.
 * In $NVT$ simulation, you need to specify the temperature by `TEBEG` and `TEEND` tags. These are the target temperature at the beggining of the simulation and end of the simulation. The units are in Kelvin (K).
+* In Nose-Hoover, temperature fluctuates around the target value. Adjusting the `SMASS` value may resolve this to some extent.
 
 ## INCAR setting
 * INCAR tag related to the NVT MD simulation is as follows. Other parts can be same with the previous INCAR setting.
@@ -41,7 +42,7 @@ TEEND  =  300
 ```
 * The MD-specific keywords are as follows:
     + `POTIM`: In MD calculation, this means the timestep in femtosecond (fs, 1.0e-15 s). Usually, 0.5-2.0 should be used.
-    + `NBLOCK`: Frequency to control the temperature when using Berendsen thermostat. `NBLOCK` = 10 means temperature is scaled every 10 steps during the MD.
+    + `NBLOCK`: Frequency to control the temperature when using Berendsen thermostat. `NBLOCK` = 10 means temperature is scaled every 10 steps during the MD. *Not necessary when using Nose-Hoover thermostat*.
     + `TEBEG`: Target temperature at the beggining of the MD.
     + `TEEND`: Target temperature at the end of the MD. If this value is different from `TEBEG`, gradual increase/decrease of temperature during MD is taken.
 
