@@ -12,25 +12,39 @@
     + $V$: volume of the simulation cell
     + $T$: temperature
     + $P$: pressure
-    + $\mu$: chemical potential
+    + $H$: enthalpy
 * The conserved variables are the variables kept constant during the MD simulation.
-* Usually, three variables are chosen for the MD calculation and that calculation is called like the *NVT ensemble*, by taking conserved variables. In this case, N, V, and T are kept constant during the MD.
-* Two types of ensembles are possible in VASP: *NVE* or *NVT*. These are also called *microcanonical ensemble* or *canonical ensemble*, respectively.
+* Usually, three variables are chosen for the MD calculation, and the MD simulation is labeled by these conserved variables.
+* Four types of ensembles are possible in VASP: *NVE*, *NVT*, *NpT*, and *NpH*. Among them, formar two ensembles are widely used, and also called *microcanonical ensemble* and *canonical ensemble*, respectively.
 * NVT simulation is more usual so we will cover it here. Keeping $N$ means we have no generation or elimination of the atoms or electsons (as usual simulations does). Keeping $V$ means cell size is fixed during the simulation. So additional factor is the temperature of the system.
 * To control the temperature, we use *thermostat*. This is the heat bath connected to the system, and it supplies or extract the temperature to adjust the system's temperature to the target temperature value.
 * For $NVT$ simulation, we have two options in VASP.
     1. Berendsen thermostat
-    2. Nose-Hoover thermostat
-* One can switch these two by changing the `SMASS` tag in INCAR.
-    + `SMASS = -1` for Berendsen
-    + `SMASS > 0`  for Nose-Hoover (for example, use values from `SMASS = 0.5` to `SMASS = 2.0`)
+    2. Andersen thermostat
+    3. Nose-Hoover thermostat
+    4. Langevion thermostat
+    5. Multiple Andersen thermostat
+* Among them, Berendesen and Nose-Hoover is popular so we will cover them here. How to set these thermostats with INCAR will be introduced later.
 * Usually Berendsen thermostat is easier to use but Nose-Hoover is better from theoretical viewpoint. So we learn to use the Berendsen thermostat in this page.
-* In $NVT$ simulation, you need to specify the temperature by `TEBEG` and `TEEND` tags. These are the target temperature at the beggining of the simulation and end of the simulation. The units are in Kelvin (K).
-* In Nose-Hoover, temperature fluctuates around the target value. Adjusting the `SMASS` value may resolve this to some extent.
+* The full details of the MD calculation in VASP is shown in https://www.vasp.at/wiki/index.php/Molecular_dynamics_calculations
 
 ## INCAR setting
-* INCAR tag related to the NVT MD simulation is as follows. Other parts can be same with the previous INCAR setting.
-* The full INCAR file can be found in `INCAR_MD`.
+* The MD-specific keywords are as follows:
+1. Common to all MD calculation
+    + Set `IBRION` to 0.
+    + `NSW`: The number of steps (same with geometry optimization).
+    + `POTIM`: In MD calculation, this means the timestep in femtosecond (fs, $10^{-15}$ s). Usually, 0.5-2.0 should be used.
+2. Common to all NVT MD calculation
+    + `TEBEG`: Target temperature (in Kelvin) at the beggining of the MD.
+    + `TEEND`: Target temperature at the end of the MD. If this value is different from `TEBEG`, gradual increase/decrease of temperature during MD is taken.
+3. When using Berendsen thermostat
+    + Set `SMASS` to -1.
+    + `NBLOCK`: Frequency of the velocity scaling. Setting this value to, for example 10, means temperature is scaled every 10 steps.
+4. When using Nose-Hoover thermostat
+    + Set `SMASS` to some positive value (0.5~2.0 is standard).
+    + `MDALGO = 2`.
+
+* So the INCAR part for the Berendsen NVT MD becomes like
 ```
 IBRION =  0
 POTIM  =  1.0
@@ -40,11 +54,8 @@ NBLOCK =  10
 TEBEG  =  300
 TEEND  =  300
 ```
-* The MD-specific keywords are as follows:
-    + `POTIM`: In MD calculation, this means the timestep in femtosecond (fs, 1.0e-15 s). Usually, 0.5-2.0 should be used.
-    + `NBLOCK`: Frequency to control the temperature when using Berendsen thermostat. `NBLOCK` = 10 means temperature is scaled every 10 steps during the MD. *Not necessary when using Nose-Hoover thermostat*.
-    + `TEBEG`: Target temperature at the beggining of the MD.
-    + `TEEND`: Target temperature at the end of the MD. If this value is different from `TEBEG`, gradual increase/decrease of temperature during MD is taken.
+* In Nose-Hoover, temperature fluctuates around the target value. Adjusting the `SMASS` value may resolve this to some extent.
+* `SMASS` in Nose-Hoover controls the frequency of the coupling to the heat bath, so it is a parameter we need to fix. Usually, larger `SMASS` leads slow increase/decrease of temperature.
 
 ## POSCAR
 * Any POSCAR file is fine. A file with 32 water molecules are prepared; see `POSCAR_MD`.
