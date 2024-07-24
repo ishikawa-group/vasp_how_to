@@ -1,4 +1,4 @@
-# 東京工業大学の計算機センター(TSUBAME3.0)を利用するためのメモ
+# 東京工業大学の計算機センター(TSUBAME4.0)を利用するためのメモ
 * 以下、東工大の職員・学生を想定
 
 ## アカウントの作成
@@ -11,7 +11,7 @@
     4-3. 公開鍵ファイル`id_rsa_XXX_.pub`の内容をコピー
     4-4. TSUBAMEポータルに戻り、"SSH公開鍵追加"をクリック、公開鍵コード入力に上記の内容を貼り付ける
     4-5. "追加"をクリック
-5. ターミナルに戻り、`ssh [your_account_name]@login.t3.gsic.titech.ac.jp -i [your_private_keyfile]`でログイン
+5. ターミナルに戻り、`ssh [your_account_name]@login.t4.gsic.titech.ac.jp -i [your_private_keyfile]`でログイン
 6. ssh configを設定
 
 ## リソースの獲得
@@ -38,7 +38,7 @@
 5. ポイント購入
 
 #### TSUBAMEポイント確認
-* ターミナルで`t3-user-info group point`
+* ターミナルで`t4-user-info group point`
 
 ## submit
 * `qsub -g [group_name] script.sh`
