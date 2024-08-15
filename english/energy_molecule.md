@@ -141,7 +141,9 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 * OSZICAR: This file contains a summary of the iteration loop.
 * OUTCAR: This file writes down everything about the run.
 * The most important output is the **total energy** of this system.
-  This is found in line `energy without entropy = -857.31883692  energy(sigma->0) = -857.35037185` in OUTCAR. Among these values, use the latter one (i.e. `energy(sigma->0)`). The energy is defined in eV (electron volt) unit.
+  + This is found in line `energy without entropy = -13.82671748  energy(sigma->0) = -13.82671748` in OUTCAR.
+  + The exact values may change depending on the environment.
+  + Among these values, use the latter one (i.e. `energy(sigma->0)`). The energy is defined in eV (electron volt) unit.
 
 # Continuing runs
 * There are three important output files: CHGCAR, CONTCAR, and WAVECAR. They are files of the calculated charge densities, the final atomic postions, and the filan wave functions (in a bynary format).
