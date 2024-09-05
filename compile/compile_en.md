@@ -26,7 +26,7 @@ sudo apt -y install openmpi-bin libopenmpi-dev
 * Include files (\*.h) are placed to `/usr/include`.
 * Check for the library file name (libxxx.so), then use it when modifying the makefile.
 ```bash
-sudo apt -y install libfftw3-3 libfftw3-dev libfftw3-doc
+sudo apt -y install libfftw3-bin libfftw3-dev libfftw3-mpi-dev
 sudo apt -y install libopenblas-dev
 sudo apt -y install libscalapack-openmpi2.1 libscalapack-openmpi-dev
 ```
