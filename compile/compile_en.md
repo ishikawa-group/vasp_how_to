@@ -12,9 +12,10 @@ scp vasp.6.4.3.tgz your_name@X.X.X:/home/your_name -i ~/.ssh/your_private_key
 ```
 
 ### 2. Install compilers
-* You need to install GNU compilers (gcc, g++, gfortran) and MPI compilers.
+* You need to install GNU compilers (gcc, g++, gfortran, openmpi) and other tools.
 ```bash
 sudo apt -y update
+sudo apt -y install rsync
 sudo apt -y install build-essential
 sudo apt -y install gfortran
 sudo apt -y install openmpi-bin libopenmpi-dev
