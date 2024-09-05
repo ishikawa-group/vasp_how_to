@@ -6,6 +6,7 @@
 
 ### 1. Send VASP files to server
 * You need to send `vasp.X.X.X.tar.gz` to the remote environment by scp after establishing ssh connection.
+* Also send paw-potential files if you want.
 ```bash
 scp vasp.6.4.3.tgz your_name@X.X.X:/home/your_name -i ~/.ssh/your_private_key
 ```
