@@ -25,10 +25,11 @@ sudo apt -y install openmpi-bin libopenmpi-dev
 * When using apt, libraries are installed to `/usr/lib/x86_64-linux-gnu/`.
 * Include files (\*.h) are placed to `/usr/include`.
 * Check for the library file name (libxxx.so), then use it when modifying the makefile.
+* The exact version number of scalapack (2.2 below) may change; use `apt search scalapack`.
 ```bash
 sudo apt -y install libfftw3-bin libfftw3-dev libfftw3-mpi-dev
 sudo apt -y install libopenblas-dev
-sudo apt -y install libscalapack-openmpi2.1 libscalapack-openmpi-dev
+sudo apt -y install libscalapack-openmpi2.2 libscalapack-openmpi-dev
 ```
 
 ### 4. Prepare makefile
