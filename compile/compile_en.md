@@ -25,8 +25,8 @@
 `cp ./arch/makefile.include.gnu ./makefile.include`
 
 # Edit makefile.include
-`vi makefile.include`
-	* You need to change FFTW, openBLAS, and SCALAPACK parts.
+* You need to modify `makefile.include` to change FFTW, openBLAS, and SCALAPACK parts.
+* An example is put in this directory: `makefile.include.gnu`.
 
 # make
 `make veryclean`
