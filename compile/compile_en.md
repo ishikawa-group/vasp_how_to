@@ -14,9 +14,9 @@ scp vasp.6.4.3.tgz your_name@X.X.X:/home/your_name -i ~/.ssh/your_private_key
 ### 2. Install compilers
 * You need to install GNU compilers (gcc, g++, gfortran) and MPI compilers.
 ```bash
-sudo apt install build-essential
-sudo apt install gfortran
-sudo apt install openmpi-bin libopenmpi-dev
+sudo apt -y install build-essential
+sudo apt -y install gfortran
+sudo apt -y install openmpi-bin libopenmpi-dev
 ```
 
 ### 3. Install libraries
@@ -25,9 +25,9 @@ sudo apt install openmpi-bin libopenmpi-dev
 * Include files (\*.h) are placed to `/usr/include`.
 * Check for the library file name (libxxx.so), then use it when modifying the makefile.
 ```bash
-sudo apt install libfftw3-3 libfftw3-dev libfftw3-doc
-sudo apt install libopenblas-dev
-sudo apt install libscalapack-openmpi2.1 libscalapack-openmpi-dev
+sudo apt -y install libfftw3-3 libfftw3-dev libfftw3-doc
+sudo apt -y install libopenblas-dev
+sudo apt -y install libscalapack-openmpi2.1 libscalapack-openmpi-dev
 ```
 
 ### 4. Prepare makefile
