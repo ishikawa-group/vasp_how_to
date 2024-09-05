@@ -1,16 +1,20 @@
 # VASP compile
+* Here, we will see how to compile the VASP package.
+
 ## Compling VASP on Ubuntu with GNU compilers
-# Send VASP files to server
+* Below is how to compile the VASP on Ubuntu Linux with GNU compilers, which is completely free.
+
+### 1. Send VASP files to server
 * You need to send `vasp.X.X.X.tar.gz` to the remote environment by scp after establishing ssh connection.
 `scp vasp.6.4.3.tgz your_name@X.X.X:/home/your_name -i .ssh/your_private_key`
 
-# Install compilers
+### 2. Install compilers
 * You need to install GNU compilers (gcc, g++, gfortran) and MPI compilers.
 `sudo apt install build-essential`
 `sudo apt install gfortran`
 `sudo apt install openmpi-bin libopenmpi-dev`
 
-# Install libraries
+### 3. Install libraries
 * Install the mathematical libraries (FFTW3, openBLAS, SCALAPACK).
 * When using apt, libraries are installed to `/usr/lib/x86_64-linux-gnu/`.
 * Include files (\*.h) are placed to `/usr/include`.
@@ -19,16 +23,16 @@
 `sudo apt install libopenblas-dev`
 `sudo apt install libscalapack-openmpi2.1 libscalapack-openmpi-dev`
 
-# Prepare makefile
-## copy pre-defined makefile
+### 4. Prepare makefile
+#### copy pre-defined makefile
 `cd vasp.x.x.x`
 `cp ./arch/makefile.include.gnu ./makefile.include`
 
-# Edit makefile.include
+#### Edit makefile.include
 * You need to modify `makefile.include` to change FFTW, openBLAS, and SCALAPACK parts.
 * An example is put in this directory: `makefile.include.gnu`.
 
-# make
+### 5. make
 `make veryclean`
 `make all`
 
