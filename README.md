@@ -9,5 +9,8 @@
 
 * Followings should be seen if necessary:
     + [tsubame.md (jumps to a file in other repository)](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
-    + [compile.md](./japanese/compile.md)
+    + [compile.md (Japanese only)](./japanese/compile.md)
     
+* The `test` directory contains input files for a simple VASP calculaiton. You can use it to check your VASP compiation is correctly done or not.
+  These examples are selected from VASP wiki.
+    + CO molecule geometry optimization: https://www.vasp.at/wiki/index.php/CO
