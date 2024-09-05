@@ -1,8 +1,15 @@
 # VASP compile
 * Here, we will see how to compile the VASP package.
 
-## Compling VASP on Ubuntu with GNU compilers
+
+## Compiling VASP with Intel compilers
+* See Japanese document (and translate it if necessary).
+
+
+## Compiling VASP on Ubuntu with GNU compilers
 * Below is how to compile the VASP on Ubuntu Linux with GNU compilers.
+* You can prepare this combination (Ubuntu + GNU) on cloud resources such as Google Computing Engine (GCE).
+* After compiling VASP on GCE, you can log-in (via ssh) to that virtual machine (VM) by knowning its external IP address, then you can calculate something.
 
 ### 1. Send VASP files to server
 * You need to send `vasp.X.X.X.tar.gz` to the remote environment by scp after establishing ssh connection.
