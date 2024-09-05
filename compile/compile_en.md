@@ -35,6 +35,7 @@ sudo apt -y install libscalapack-openmpi2.2 libscalapack-openmpi-dev
 ### 4. Prepare makefile
 #### copy pre-defined makefile
 ```bash
+tar zxvf vasp.x.x.x
 cd vasp.x.x.x
 cp ./arch/makefile.include.gnu ./makefile.include
 ```
