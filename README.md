@@ -41,6 +41,4 @@
 
 5th day(11/1):
 
-6th day(11/8):
-
-7th day(11/15):
+6th day(11/8): Free day
