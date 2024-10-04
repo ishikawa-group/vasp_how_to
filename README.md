@@ -10,7 +10,7 @@
 
 * Followings should be seen if necessary:
     + [tsubame.md (jumps to a file in other repository)](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
-    + [compile.md (Japanese only)](./japanese/compile.md)
+    + [compile.md (Japanese only)](./compile/compile_en.md)
     
 * The `test` directory contains input files for a simple VASP calculaiton. You can use it to check your VASP compiation is correctly done or not.
   These examples are selected from VASP wiki.
@@ -19,7 +19,7 @@
 
 ---
 
-# as Materials Simulation (TAC-MI) lecture: Solid course
+# as Materials Simulation (TAC-MI) lecture: Solid-state course
 * TAC-MI lecture at Tokyo-Tech (2024 Oct. and Nov.)
 
 * The lecture plan is below and associated contents are in the links.
