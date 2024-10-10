@@ -151,5 +151,5 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 * A continuous run can be started with the use of these output files.
 
 ## Exercise
-1. For CO molecule, use different smearing algorithm by specifying `ISMEAR = 1` and see the energy change. This setting uses Methfessel-Paxton scheme for the smearing. But for molecules, you don't have to use this setting.
-2. For CO molecule, change the position of the second atom (O atom, `0.0 0.0 1.1` in the above example) to 0.9, 1.0, 1.2, and 1.3 and see the change in the energy. Plot the energy using Excel (or any), and draw the curve. Confirm that the energy minimum is close to the experimental value of C-O distance in CO (1.12 Angstrom).
+1. For CO molecule, change the position of the second atom (O atom, `0.0 0.0 1.1` in the above example) to 0.9, 1.0, 1.2, and 1.3 and see the change in the energy. Plot the energy using Excel (or any), and draw the curve. Confirm that the energy minimum is close to the experimental value of C-O distance in CO (1.12 Angstrom).
+2. Try to calculate N2 molecule instead of CO.
