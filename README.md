@@ -37,6 +37,7 @@
 
 2nd day (10/11)
   + [linux](https://github.com/ishikawa-group/gaussian_how_to/blob/main/linux.md)
+  + [tsubame supercomputer](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
   + [energy calculation of molecule](./english/energy_molecule.md)
   + [basic theory](./english/theory.md)
 
