@@ -1,4 +1,3 @@
-# VASP how to
 <!-- 
 * This repository is for those who want to learn the DFT (density functional theory) calculations using VASP.
 * VASP stands for Vienna ab initio simulation package, and it is the software package to do the DFT calculation with plane-wave basis set.
