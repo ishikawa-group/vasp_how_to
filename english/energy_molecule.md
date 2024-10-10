@@ -6,8 +6,8 @@
 * The example here is taken from the VaspWiki: https://www.vasp.at/wiki/index.php/CO
 
 ## INCAR
-* This file specifies the computational condition in VASP. In this file, you need to specify tag-variable pairs.
-* Variable might be integer, float, logical(.TRUE. or .FALSE.), and string.
+* This file specifies the computational condition in VASP. In this file, you need to specify *tag-variable pairs*.
+* Variable might be integer, float, logical (.TRUE. or .FALSE.), and string.
 * The minimal INCAR file is something like below. The details will be explained later or see VaspWiki website.
 ```
 SYSTEM = CO molecule in a box
