@@ -53,4 +53,5 @@
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
   + [running VASP from python](./english/ase.md)
 
-6th day(11/8): Free day
+6th day (11/8)
+  + Free day
