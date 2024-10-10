@@ -16,17 +16,17 @@ NSW    =  0
 IBRION = -1
 ```
 * The keywords above is just simple examples of the INCAR tags. These mean
-    + `SYSTEM`: A free keyword to identify the calculation.
-    + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
-    + `NSW`: This tag controls the number of ionic steps i.e. geometry optimization steps.
-    + `IBRION`: Controls the motion of ions. IBRION = -1 means energy calculation at given geometry.
+  + `SYSTEM`: A free keyword to identify the calculation.
+  + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
+  + `NSW`: This tag controls the number of ionic steps i.e. geometry optimization steps.
+  + `IBRION`: Controls the motion of ions. IBRION = -1 means energy calculation at given geometry.
 
 ## POSCAR
 * This file gives the element species and positions of atoms.
 * POSCAR consists of three parts:
-    1. The top part gives the size of the **unit cell**.
-    2. The middle part gives the **number of each elements**.
-    3. The last part gives **x-, y-, and z-coordinates** of atoms.
+  1. The top part gives the size of the **unit cell**.
+  2. The middle part gives the **number of each elements**.
+  3. The last part gives **x-, y-, and z-coordinates** of atoms.
 ```
 CO molecule in a box
 1.0

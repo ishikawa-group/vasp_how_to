@@ -1,3 +1,13 @@
+<!--
+# when using marp
+---
+marp: true
+math: mathjax
+---
+<!--
+headingDivider: 2
+-->
+
 ## Why quantum mechanics?
 * The behavior of the particles is governed by the equation of motion, and its classical mechanical version is known as Newton's law.
 * The proper description of atoms, molecules, and electrons is given by the laws of quantum mechanics. For this reason, we need to consider the **Schrödinger equation**, which is a quantum-mechanical equation of motion.
@@ -26,6 +36,9 @@ V_{\rm el-el} &= \frac{1}{2}\sum_{i \ne j}\frac{1}{|{\bf r}_i - {\bf r}_j|} &\te
 \end{align*}
 ```
 
+##
+* Note that $V_{\rm el-el}$ is the two-electron operator. Other operators are one-electron operator.
+
 ## Dirac's braket notation
 * It is convenient to use Dirac's "bra-ket notation" for wave functions and multi-dimensional integrals in electronic structure theory to simplify the notation. The equivalences are defined as
 ```math
@@ -37,31 +50,35 @@ V_{\rm el-el} &= \frac{1}{2}\sum_{i \ne j}\frac{1}{|{\bf r}_i - {\bf r}_j|} &\te
 ```
 * The ket $\ket{\Psi}$ denotes a wave function while the bra $\bra{\Psi}$ denotes a complex conjugate wave function $\Psi^{*}$. The combined bracket denotes that the whole expression should be integrated over all coordinates.
 
-# Effective Hamiltonian
+## Effective Hamiltonian
 * Except for the simplest cases, there are no simple ways to solve the SE in a closed analytical form so we have to solve it numerically.
 * The SE is a second-order partial differential equation (PDE), so in principle, it can be directly solved. However, this needs integration over a large number of dimensions ($3\times N_{\rm elec}$), which is impossible.
 * This difficulty can be solved by two approaches
-    1. Approximate the electron-electron interaction by the effective one-electron problem. This reduces the $3N$ dim. integration to a sum of 3 dim. integrations.
+    1. Approximate the electron-electron interaction by the effective one-electron problem. This reduces the $3N$ dim. integration to a sum of 3 dim. integrations. Here the original Hamiltonian reduces to the effective Hamiltonian.
     2. Expanding the wave function in some suitable basis set, because this will convert the PDE into a set of algebraic equations.
-* The methodology based on the above approaches is to use the **effective hamiltonian**.
-```math
-\left[\hat{h} + v_{\rm eff}({\bf r})\right]\psi_i({\bf r}) = \varepsilon_i \psi_i({\bf r})
-```
+
+## 
+* Depending on the form of the effective Hamiltonian, we have the **Hatree-Fock equation** or the **Kohn-Sham equation**.
+* The former is used in the Hartree-Fock and post-Hatree-Fock theories, and the latter is used in the density functional theory (DFT).
 
 ## Hartree product
+* As a simple example of deriving the effective hamiltonian, we will review the case with using the Hatree product as a wavefunction.
 * We are mainly interested in the electronic ground state energy $E_0$.
 * There is an important quantum mechanical principle - the *Rayleigh-Ritz variational principle* - that provides a route to find approximate solutions for $E_0$.
 * It states that the expectation value of $\hat{H}$ of any $\Psi$ is always higher than or equal to the exact $E_0$, i.e.
 ```math
 E_0 \le \frac{\braket{\Psi|\hat{H}|\Psi}}{\braket{\Psi|\Psi}}
 ```
-* So, the expectation value calculated by the wave function at your hand $\Psi$  will always be an upper bound for the true ground state energy. By improving $\ket{\Psi}$, you will have a lower expectation value that is closer to the true ground state energy.
+* So, the expectation value calculated by your "trial" wave function $\Psi$ will always be an upper bound for the true ground state energy. By improving $\ket{\Psi}$, you will have a lower expectation value that is closer to the true ground state energy.
 
 ##
-* Since $V_{\rm nuc-el}$ is an effective external potential for an electron, we write it as a function of $r$ and also define the one-electron Hamiltonian $\hat{h}$ as
+* Since $V_{\rm nuc-el}$ is an **external potential** for an electron, we write it as $\hat{v}_{\rm ext}({\bf r})$ which is a function of ${\bf r}$.
 ```math
 \hat{v}_{\rm ext}({\bf r}) = -\sum_I \frac{Z_I}{|{\bf r} - {\bf R}_I|} \\
-\hspace{2mm} \hat{h}({\bf r}) = -\frac{\nabla^2}{2} + \hat{v}_{\rm ext}({\bf r})
+```
+* Also, we define the one-electron Hamiltonian $\hat{h}$ as
+```math
+\hat{h}({\bf r}) = -\frac{\nabla^2}{2} + \hat{v}_{\rm ext}({\bf r})
 ```
 * Then one can form the one-electron SE as
 ```math
@@ -71,6 +88,8 @@ E_0 \le \frac{\braket{\Psi|\hat{H}|\Psi}}{\braket{\Psi|\Psi}}
 ```math
 \Psi_{\rm HP}({\bf r}_1, {\bf r}_2, \cdots, {\bf r}_N) = \psi_1({\bf r}_1)\psi_2({\bf r}_2)\cdots\psi_N({\bf r}_N)
 ```
+
+## 
 * This wave function is called the **Hartree product**, and it is the first crude guess for the true $N$-electron wave function.
 * Note that $\psi_i$ is orthonormal thus $\braket{\psi_i({\bf r})|\psi_j({\bf r})} = \delta_{ij}$.
 
@@ -129,7 +148,8 @@ the *Hartree potential* $\hat{v}_H$ can be defined as
 ```math
 \hat{v}_H({\bf r}) = \int d{\bf r}' \frac{\rho({\bf r}')}{|{\bf r} - {\bf r}'|}
 ```
-which corresponds to the electrostatic potential of all electrons. With $\hat{v}_H$, the Hartree equation can be written as
+* This corresponds to the mean-field effect of electron-electron repulsion from all electrons, but it does not capture the quantum effect such as exchange and correlation.
+* With $\hat{v}_H$, the Hartree equation can be written as
 ```math
 \left[\hat{h} + \hat{v}_H \right]\chi_i({\bf x}) = \epsilon_i\chi_i({\bf x})
 ```
@@ -140,18 +160,24 @@ which corresponds to the electrostatic potential of all electrons. With $\hat{v}
 * This cycle is repeated so often until the iterations no longer modify the solutions, i.e. self-consistency is reached. Such a method is known as the **self-consistent field (SCF)** method.
 
 ## Kohn-Sham equation
-* In physics and quantum chemistry, specifically density functional theory, the Kohn–Sham equation is the non-interacting Schrödinger equation (more clearly, Schrödinger-like equation) of a fictitious system (the "Kohn–Sham system") of non-interacting particles (typically electrons) that generate the same density as any given system of interacting particles.
-* In the Kohn–Sham theory the introduction of the noninteracting kinetic energy functional Ts into the energy expression leads, upon functional differentiation, to a collection of one-particle equations whose solutions are the Kohn–Sham orbitals.
-* The Kohn–Sham equation is defined by a local effective (fictitious) external potential in which the non-interacting particles move, typically denoted as vs(r) or veff(r), called the Kohn–Sham potential. If the particles in the Kohn–Sham system are non-interacting fermions (non-fermion Density Functional Theory has been researched), the Kohn–Sham wavefunction is a single Slater determinant constructed from a set of orbitals that are the lowest-energy solutions to
+* Kohn and Sham considered what occurs if the electrons are non-interacting.
+* In this case, the electron-electron repulsion is turned off, so the Schrodinger equation becomes the one-particle problem.
+* The **Kohn–Sham equation** is defined by a local effective external potential in which the non-interacting particles move, typically denoted as vs(r) or veff(r), called the Kohn–Sham potential.
+* The solution to the Kohn-Sham equation is the single Slater determinant constructed from a set of orbitals that are the lowest-energy solutions to
 ```math
-\left[\hat{h} + v_{\rm KS}({\bf r})\right]\psi_i({\bf r}) = \varepsilon_i \psi_i({\bf r})
+\left[\hat{h} + \hat{v}_{\rm KS}({\bf r})\right]\psi_i({\bf r}) = \varepsilon_i \psi_i({\bf r})
 ```
-* The Kohn–Sham equations are found by varying the total energy expression with respect to a set of orbitals, subject to constraints on those orbitals, to yield the Kohn–Sham potential as
-```math
-v_{\rm eff}({\bf r}) = v_{\rm ext}({\bf r}) + \int\frac{\rho({\bf r'})}{|{\bf r}-{\bf r'}|}d{\bf r'} + \frac{\delta E_{\rm XC}[\rho]}{\delta \rho({\bf r})}
-```
-* $E_{\rm XC}[\rho]$ in the last term is called the **exchange–correlation functional**.
 
+## 
+* The Kohn–Sham potential $\hat{v}_{\rm KS}$ is
+```math
+\hat{v}_{\rm KS}({\bf r})
+ = \hat{v}_{\rm ext}({\bf r}) + \hat{v}_{H}({\bf r}) + \frac{\delta E_{\rm XC}[\rho]}{\delta \rho({\bf r})}
+```
+* $E_{\rm XC}[\rho]$ in the last term is called the **exchange–correlation (XC) functional**. The quantum-mechanical effect comes via this term.
+* The exact form of $E_{\rm XC}$ is not yet determined, so we need to model (or approximate) it. This is the reason why we have many XC functionals (such as PBE, BLYP, B3LYP, etc.)
+
+<!--
 # Basis set expansion
 ## Localized basis set (Gaussian)
 ## Plane wave basis set
@@ -169,7 +195,7 @@ v_{\rm eff}({\bf r}) = v_{\rm ext}({\bf r}) + \int\frac{\rho({\bf r'})}{|{\bf r}
 {\bf b_2} = \frac{2\pi}{\Omega}{\bf a_3}\times{\bf a_1} \\
 {\bf b_3} = \frac{2\pi}{\Omega}{\bf a_1}\times{\bf a_2} \\
 \end{align*}
-```
+```math
 where $\Omega={\bf a_1}\cdot {\bf a_2}\times{\bf a_3}$ is the volume of the unit cell.
 
 ## Bravais lattice
@@ -182,3 +208,4 @@ where $\Omega={\bf a_1}\cdot {\bf a_2}\times{\bf a_3}$ is the volume of the unit
 * 
 ## Periodic Schrodinger equation
 ## Periodic Kohn-Sham equation
+-->

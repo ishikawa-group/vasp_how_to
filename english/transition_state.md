@@ -1,22 +1,32 @@
-# Transition state (TS, 遷移状態)を求める
-* 化学反応において、反応前(reactant、反応物)と反応後(product、生成物)を繋ぐポテンシャルエネルギー曲面上のうち最小エネルギー経路となる経路上でのエネルギー最大値を遷移状態という
-* VASPでこのTSを求める
-* Nudged elastic band (NEB)という方法がよく用いられる
-* Univ. TexasのHenkelman groupのスクリプトがよく用いられる: https://theory.cm.utexas.edu/vtsttools/
+# Transition state
+* In chemical reaction, we can define the reactant state as the starting state of some reaction and the product state as the state that the reaction is completed.
+* The transition state lays in between the reactant state and product state. Its the exact position is defined as the energy-maximum-point on the minium energy path.
+* Here we will learn how to calculate this transition state (TS) with VASP.
+* A method called **nudged elastic band (NEB)** is often used for this purpose.
+* To run the NEB, some Perl scripts provided by the Henkelman group from University of Texas is often used:
+  + https://theory.cm.utexas.edu/vtsttools/
 
-* 以下を準備する
-1. reactantとproductの構造を求める。各々、構造最適化によって求めること --> POSCAR1, POSCAR2とし同じディレクトリに置く
-2. reactantとproductの間の構造を作成する。この中間構造はNEB計算の初期値となるが、適当に両点を補間した構造でよい。ここでは、例として4つの中間構造を作るとする(これをimage数と呼ぶ)
-    * 以下を実行: `nebmake.pl POSCAR1 POSCAR2 4`
-4. VASPのディレクトリを用意する。4点の場合、`00`, `01` ... `05`が必要。ここで`00`にはreactant、`05`にはproductの構造を置く
-5. INCARファイルを次のように作成する
+## Procedure
+1. Find the structures of reactant and product states by carrying out the geometry optimization.
+2. Rename the reactant and product final POSCAR files (or CONTCAR) to *POSCAR1* and *POSCAR2*, respectively. Then put these files to the current directory.
+3. Make interpolated structure as the initial structures of NEB. Here, we make 4 interpolated structures.
+  + `nebmake.pl POSCAR1 POSCAR2 4`
+4. Find the directories 00, 01, 02, 03, 04, and 05 is made. Put the POSCAR1 and POSCAR2 files to 00 and 05, respectively.
+5. Make INCAR file
 ```
+...
 IBRION  = 2
 POTIM   = 0.1
 
-IMAGES  =  4  # image数に応じて変化させる
+IMAGES  =  4  # Change according to the image number
 SPRING  = -5
 
-ISYM    = 0  # 対称性は切っておいた方がいい
+ISYM    = 0   # Better to turn off the symmetry
+...
 ```
-5. 計算を実行する
+6. Execute the VASP.
+
+## Advanced topics
+* Usually, the climbing image NEB (CINEB) is more stable than the standard NEB. To perform the CINEB, you need to download some files from the Henkelman group website above then need to compile VASP again.
+* We don't mention this procedure. Interested readers should visit their website.
+* Also, one of the major algorithm for the TS search is the *dimer method*. This is also included in the Henkelman's group code so need to compile VASP.
