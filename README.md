@@ -1,4 +1,5 @@
 # VASP how to
+<!-- 
 * This repository is for those who want to learn the DFT (density functional theory) calculations using VASP.
 * VASP stands for Vienna ab initio simulation package, and it is the software package to do the DFT calculation with plane-wave basis set.
 * For beginners in the DFT to do VASP, learn by the following order:
@@ -16,29 +17,40 @@
   These examples are selected from VASP wiki.
     + CO molecule geometry optimization: https://www.vasp.at/wiki/index.php/CO
 
-
 ---
+-->
 
-# as Materials Simulation (TAC-MI) lecture: Solid-state course
-* TAC-MI lecture at Tokyo-Tech (2024 Oct. and Nov.)
+# Materials Simulation (TAC-MI) lecture
+* This repositry is also used for the TAC-MI lecture at Tokyo-Tech periodic course (2024 Oct. & Nov.)
 
 * The lecture plan is below and associated contents are in the links.
 
-* The exercises in the lecture are for practice only. These are not used in the evaluation of the class grade.
+* Some lecturs have exercizes. There are not used for the evaluation of the grade.
 
 <!-- * The deadline of the report submission is **12/8**. -->
 
 * If you have any question, feel free to ask: ishikawa.a.ai@m.titech.ac.jp
 
 ## Lecture plans
-1st day(10/4): Introduction (both solid-state and molecular groups)
+1st day (10/4)
+  + Introduction (both solid-state and molecular groups)
 
-2nd day(10/11):
+2nd day (10/11)
+  + [linux](https://github.com/ishikawa-group/gaussian_how_to/blob/main/linux.md)
+  + [energy calculation of molecule](./english/energy_molecule.md)
+  + [basic theory](./english/theory.md)
 
-3rd day(10/18):
+3rd day (10/18)
+  + [energy calculation of bulk and surface]()
+  + [geometry optimization]()
 
-4th day(10/25):
+4th day (10/25)
+  + [molecular dynamics](./english/molecular_dynamics.md)
+  + [charge density analysis](./english/charge.md)
+  + [density of state](./english/dos.md)
 
-5th day(11/1):
+5th day (11/1)
+  + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
+  + [running VASP from python](./english/ase.md)
 
 6th day(11/8): Free day
