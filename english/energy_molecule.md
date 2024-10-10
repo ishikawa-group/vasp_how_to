@@ -20,6 +20,7 @@ IBRION = -1
   + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
   + `NSW`: This tag controls the number of ionic steps i.e. geometry optimization steps.
   + `IBRION`: Controls the motion of ions. IBRION = -1 means energy calculation at given geometry.
+* Details of other INCAR tags are explained in [incar.md](./incar.md).
 
 ## POSCAR
 * This file gives the element species and positions of atoms.
@@ -148,12 +149,6 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 # Continuing runs
 * There are three important output files: CHGCAR, CONTCAR, and WAVECAR. They are files of the calculated charge densities, the final atomic postions, and the filan wave functions (in a bynary format).
 * A continuous run can be started with the use of these output files.
-
-# more incar tags
-* `ENCUT`: The flag sets a cutoff energy for the plane wave basis set. This should be higher than the maximum value recommended in the POTCAR File (ENMAX).
-* `EDIFF`: This flag sets a stopping criterion for electronic mimimization. The default value is 1.0E-4 (in eV).
-* `ALGO`: This flag sets an electronic minimization algorithm. `VeryFast` or `Fast` is usually fine.
-* `EDIFFG`: This flag sets a stopping criterion for the ionic minimization. Positive value means in the energy (eV), and negative value means in the force (eV/Angstrom).
 
 ## Exercise
 1. For CO molecule, use different smearing algorithm by specifying `ISMEAR = 1` and see the energy change. This setting uses Methfessel-Paxton scheme for the smearing. But for molecules, you don't have to use this setting.
