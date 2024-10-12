@@ -8,7 +8,7 @@
 
 1. Adsorption $$ A + * \rightarrow A* $$
 ```math
-\ce{A + $*$ -> Asurf}
+\ce{A + $*$ -> A$*$}
 ```
 
   2. Surface reaction (Langmuir-Hinshelwood)
