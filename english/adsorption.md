@@ -7,21 +7,21 @@
 * Therefore, we need to consider following four types of reactions along the adsorption event (the asterisk $*$ means the surface, and species with asterisk is the adsorbate).
 
   1. Adsorption
-    $$
+    ```math
     \ce{A + $*$ -> A$*$}
-    $$
+    ```
   2. Surface reaction (Langmuir-Hinshelwood)
-    $$
+    ```math
     \ce{A$*$ + B$*$ -> C$*$}
-    $$
+    ```
   3. Surface reaction (Eley-Rideal) 
-    $$
+    ```math
     \ce{A$*$ + D -> E}
-    $$
+    ```
   4. Desorption
-    $$
+    ```math
     \ce{F$*$ -> F + $*$}
-    $$
+    ```
 
 ## Calculating adsorption energy
 * As an example, we will see how to calculate the hydrogen adsorption energy on the Ru surface.
@@ -83,13 +83,13 @@ add_adsorbate(slab=surf, adsorbate=Atom("H"), height=1.2, offset=(0.22, 0.11))
 * Geometry optimization calculation should be done.
 * After the calculation, get the energies by takeing the value of `energy(sigma->0)`.
 * Then the adsorption energy ($E_{\rm ads}$) can be calculated as
-$$
+```math
 E_{\rm ads} = E_{\rm surf-ads} - \left(E_{\rm surf} + E_{\rm adsorbate}\right)
-$$
+```
 * Therefore in this case, the adsortion energy is
-$$
+```math
 E_{\rm ads} = E_\ce{Ru-H} - \left(E_\ce{Ru} + \frac{1}{2}E_\ce{H2}\right)
-$$
+```
 * The reference adsorption energy is -0.63 eV (fcc hollow). Compare with your calculated value.
   https://www.researchgate.net/figure/Adsorption-sites-for-H-on-the-Ru0001-surface-with-corresponding-energies-of-adsorption_fig1_340125395
 
