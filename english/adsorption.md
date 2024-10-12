@@ -6,10 +6,11 @@
 * There are two types of the surface reaction; one is called **Langmuir-Hinshelwood** type and the other is **Eley-Rideal** type. The former is the reaction that occurs *between the adsorbed species*. In the latter, the reaction occurs *between the adsorbed species and the gas-phase species*.
 * Therefore, we need to consider following four types of reactions along the adsorption event (the asterisk $*$ means the surface, and species with asterisk is the adsorbate).
 
-  1. Adsorption
-    ```math
-    A + surf \rightarrow Asurf
-    ```
+1. Adsorption
+```math
+A + surf \rightarrow Asurf
+```
+
   2. Surface reaction (Langmuir-Hinshelwood)
     ```math
     \ce{A$*$ + B$*$ -> C$*$}
