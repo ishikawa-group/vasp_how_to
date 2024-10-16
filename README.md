@@ -43,7 +43,6 @@
   + [energy calculation of molecule](./english/energy_molecule.md)
   + [energy calculation of bulk and surface](./english/energy_bulk.md)
   + [Python environment setup](https://github.com/ishikawa-group/python_introduction/blob/main/setup.md)
-  + [running VASP from Python](./english/ase.md)
 
 4th day (10/25)
   + [geometry optimization](./english/optimize.md)

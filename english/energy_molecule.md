@@ -75,7 +75,6 @@ Monkhorst Pack
 0 0 0
 ```
 
-
 ## POTCAR
 * This file has the information of pseudo-potentials of each element.
 * Pseudo-potential information of **all** elements in POSCAR should be stored one POTCAR file.
@@ -145,6 +144,22 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
   + This is found in line `energy without entropy = -13.82671748  energy(sigma->0) = -13.82671748` in OUTCAR.
   + The exact values may change depending on the environment.
   + Among these values, use the latter one (i.e. `energy(sigma->0)`). The energy is defined in eV (electron volt) unit.
+
+# Visualization
+## VESTA
+* For visualization, you can use **VESTA** for free: https://jp-minerals.org/vesta/jp/
+* After installing VESTA, you can see the structure of POSCAR by "Open" -> "POSCAR".
+* It is useful to set alias to `~/.bashrc` file (in mac)
+  ```bash
+  alias vesta=/Applications/VESTA.app/Contents/MacOS/VESTA
+  ```
+  then you can use `vesta POSCAR`.
+
+## ASE
+* When using ASE, you can see the POSCAR file with: `ase gui POSCAR`.
+
+## Ovito
+* Ovito visualization software is sometimes useful because it has many functionalities (that VESTA doen't have): https://www.ovito.org/
 
 # Continuing runs
 * There are three important output files: CHGCAR, CONTCAR, and WAVECAR. They are files of the calculated charge densities, the final atomic postions, and the filan wave functions (in a bynary format).
