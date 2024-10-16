@@ -37,21 +37,23 @@
 2nd day (10/11)
   + [linux](https://github.com/ishikawa-group/gaussian_how_to/blob/main/linux.md)
   + [tsubame supercomputer](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
-  + [energy calculation of molecule](./english/energy_molecule.md)
   + [basic theory](./english/theory.md)
 
 3rd day (10/18)
-  + [energy calculation of bulk and surface]()
-  + [geometry optimization]()
+  + [energy calculation of molecule](./english/energy_molecule.md)
+  + [energy calculation of bulk and surface](./english/energy_bulk.md)
+  + [running VASP from python](./english/ase.md)
 
 4th day (10/25)
+  + [geometry optimization](./english/optimize.md)
+  + [adsorption](./english/adsorption.md)
+  + [nanocluster]()
+
+5th day (11/1)
   + [molecular dynamics](./english/molecular_dynamics.md)
   + [charge density analysis](./english/charge.md)
   + [density of state](./english/dos.md)
-
-5th day (11/1)
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
-  + [running VASP from python](./english/ase.md)
 
 6th day (11/8)
   + Free day
