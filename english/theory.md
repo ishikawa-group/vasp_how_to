@@ -216,6 +216,13 @@ where $\Omega={\bf a_1}\cdot {\bf a_2}\times{\bf a_3}$ is the volume of the unit
 <img src=../figure/bravais.png width=50%>
 </p>
 
+## Miller index
+* The orientation of the surface plane can be defined by stating the direction of a vector normal to the plane.
+* To decide which of these many vectors to used, it is usual to specify the points at which the plane intersects the three axes of the cell.
+* The reciprocals of these intercepts are then multiplied by a scaling factor that makes each reciprocal an integer and also makes each integer as small as possible.
+* The resulting set of number is called the **Miller index** of the surface.
+* For example, the plane intersects the z axis of the cell at 1 (in units of lattice constant) and does not intersect the x and y axes, the reciprocals of the intersects are (1/$\infty$, 1/$\infty$, 1/1) and thus the surface is denoted (001).
+
 <!--
 ## Bloch theorem
 * 
