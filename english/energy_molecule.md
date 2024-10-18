@@ -107,7 +107,7 @@ Monkhorst Pack
 #!/bin/sh
 #$ -cwd
 # Uses one node of F-type
-#$ -l f_node=1
+#$ -l node_f=1
 #$ -l h_rt=0:10:00
 #$ -N flatmpi
 
