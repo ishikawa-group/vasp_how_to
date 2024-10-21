@@ -47,13 +47,13 @@
   + [energy calculation of bulk and surface](./english/energy_bulk.md)
   + [geometry optimization](./english/optimize.md)
   + [adsorption](./english/adsorption.md)
-  + [nanocluster]()
 
 5th day (11/1)
   + [molecular dynamics](./english/molecular_dynamics.md)
-  + [charge density analysis](./english/charge.md)
-  + [density of state](./english/dos.md)
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
+  <!-- + [charge density analysis](./english/charge.md)
+  + [density of state](./english/dos.md)
+  -->
 
 6th day (11/8)
   + Free day

@@ -3,24 +3,39 @@
 * The positive charge means atoms are positively charged (cationic), and negative charge means anionic atoms.
 
 ## INCAR
-* To calculate the Bader charge, following setting in `INCAR` is needed.
+* It is always better to calculate the Bader charge with *all-electron charge density*, i.e. valence and core electrons.
+* VASP usually doesn't give all electron charge density (valence only) so following INCAR tag is needed.
+  + `LCHARG = .TRUE.`
+  + `LAECHG = .TRUE.`
+* This generates the files `AECCAR0` and `AECCAR2`.
 
-* `LCHARG = .TRUE.`
-* `LAECHG = .TRUE.`
+## Making Bader charge sum with VTST script
+### Preparation
+#### VTST script
+1. Download VTST scripts from Henkelman group (in University of Texas): https://theory.cm.utexas.edu/code/vtstscripts.tgz
+2. Extract by `tar zxvf vtstscripts.tgz`
 
-* This generates the file `AECCAR0` and `AECCAR2`. These are necessary for Bader charge calculation.
+#### Bader
+1. Download bader: https://theory.cm.utexas.edu/henkelman/code/bader/download/bader.tar.gz
+2. Extract by `tar zxvf bader.tar.gz`
+3. `cd bader`
+4. `cp makefile.lnx_ifort Makefile`
+5. `make`
+6. `module load intel` (when using supercomputer)
+7. Done. Command file for Bader analysis is `bader` in that directory.
 
----
-
-#### その後
-1. Henkelman groupのとこからbinaryかソースを落とす(http://theory.cm.utexas.edu/henkelman/code/bader/)
-2. 全電子のファイルを作る
-`vtstscript/chgsum.pl AECCAR0 AECCAR2` → CHGCAR_sumが出来る
-3. `bader CHGCAR -ref CHGCAR_sum`とするとACF.datやらBCF.datやらが出てくる。chargeは**ACF.dat**に書いてある。valence electronの数が記述されるので、neutralだとどのくらいの電子数かをPOTCARで確認すること(ZVAL in POTCAR)
-* baderはVTSTscriptの中には入っていない(=別プログラム)なので注意
-* valenceのCHGCARだけでもbader analysisはできる
-    * coreを入れるとNGX等を上げないと精度良くならない
-    * valenceだけだとたまに異常なchargeが出るような気もする
+### Making CHGCAR_sum
+* Make all-electron CHGCAR by `vtstscript/chgsum.pl AECCAR0 AECCAR2`
+  + `CHGCAR_sum` should be generated
+* `bader CHGCAR -ref CHGCAR_sum`
+  + Files like `ACF.dat` or `BCF.dat` are generated.
+  + Bader charge is written in **ACF.dat**.
+  + "CHARGE" colum gives **the number of valence electrons** for each atom in that system (so the value is "electron population" rather than "charge").
+  + To calculate the charge, the number of valence electrons (in atom) should be subtracted.
+  + This value is written in *ZVAL in POTCAR*.
+  ```math
+  {\rm charge} = -(N_{\text{electron in molecule}} - {\rm ZVAL})
+  ```
 
 #### VESTAでのCHGCARの見方
 * CHGCARを開く
@@ -42,7 +57,8 @@ Ref: http://renqinzhang.weebly.com/uploads/9/6/1/9/9619514/charge_density_differ
 https://www.uni-due.de/~hp0058/?file=mathplugins.html
 (やってはいない)
 
-#### VESTAでスピン密度をプロット
-* spin-polarizedの計算をしたCHGCARからmagnetization densityを抽出
-`vtstscripts/chgsplit.pl CHGCAR` --> `CHGCAR_tot`と`CHGCAR_mag`が出てくる
-* `CHGCAR_mag`をVESTAで読み込みプロット <-- ファイル名をxxxCHGCARにしないと読み込めないので注意
+#### Plotting the spin density with VESTA
+1. Do spin-polarized calculation by setting `ISPIN = 2` and `LCHARG = .TRUE.` in `INCAR`.
+2. Confirm that `CHGCAR` is generated.
+3. `vtstscripts/chgsplit.pl CHGCAR` --> `CHGCAR_tot` and `CHGCAR_mag` are generated
+4. Copy `CHGCAR_mag` to `tmpCHGCAR` (any xxxCHGCAR filename is OK) and load with VESTA.
