@@ -32,7 +32,7 @@
 * The followings are the Python script using ASE.
 
 #### 1. Simplest approach
-```python{cmd}
+```python
 from ase import Atom
 from ase.io import write
 from ase.build import hcp0001, add_adsorbate, molecule
