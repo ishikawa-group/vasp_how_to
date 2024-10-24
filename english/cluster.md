@@ -13,6 +13,15 @@ cluster.center()
 write("cluster.pdb", cluster)
 ```
 
+### Loading cluster
+```python
+from ase.io import write, read
+
+cluster = read("cluster.xyz")
+cluster.cell = [30, 30, 30]
+write("cluster.pdb", cluster)
+```
+
 ## Distributing water around cluster (using packmol)
 * Install packmol following the official website.
 
