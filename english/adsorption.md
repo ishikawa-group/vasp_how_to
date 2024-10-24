@@ -93,8 +93,7 @@ E_{\rm ads} = E_\ce{Ru-H} - \left(E_\ce{Ru} + \frac{1}{2}E_\ce{H2}\right)
 * The reference adsorption energy is -0.63 eV (fcc hollow). Compare with your calculated value.
   https://www.researchgate.net/figure/Adsorption-sites-for-H-on-the-Ru0001-surface-with-corresponding-energies-of-adsorption_fig1_340125395
 
-
-### Advanced
+### Advanced topic
 * You can load several files using `ase.io.read`, to make a variety of surface-adsorbate pairs.
 * In the following, we consider the benzene adsorption on the Si surface.
 * Assuming that we have the coordinate of benzene ("benzene.xyz") and that of bulk Si ("si.cif"). There are available from many sources (such as PubChem, Materials Project).
@@ -106,7 +105,7 @@ from ase.build import bulk, surface, add_adsorbate, molecule
 from ase.visualize import view
 
 bulk = read("./files/si.cif")
-surf = surface(lattice=bulk, indices=[0,0,1], layers=2, vacuum=10.0)
+surf = surface(lattice=bulk, indices=[0, 0, 1], layers=2, vacuum=10.0)
 surf = surf*[2,2,1]
 
 adsorbate = read("benzene.xyz")

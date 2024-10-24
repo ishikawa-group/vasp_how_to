@@ -50,6 +50,9 @@ Monkhorst Pack
   + edit `run.sh` script (or any name)
   + `qsub run.sh`
 
+### Exercise
+* Download the Au (gold) cif file from web (Materials Project etc.) and perform the bulk structure calculation.
+
 ---
 
 ## Surface
@@ -115,8 +118,6 @@ Monkhorst Pack
 ### Executing VASP
 * Same with bulk or molecular calculations.
 
-# Exercise
-1. Execute Pt bulk calcuation by yourself.
-2. Perform the Si-bulk calculation. The cif file can be found in the Materials Project. Download it, and convert it to POSCAR.
-3. Perform the Pt surface calculation by yourself. 
-4. Compare the Pt bulk and surface calculations, by taking the **energy per Pt atom**. Which is lower (lower is more stable), bulk or surface?
+## Exercise
+1. Perform the Pt surface calculation by yourself.
+2. Perform the Pt bulk calculation, and compare the Pt bulk and surface calculations by taking the **energy per Pt atom**. Which is lower (lower is more stable), bulk or surface?
