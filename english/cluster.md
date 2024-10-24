@@ -14,7 +14,7 @@ write("cluster.pdb", cluster)
 ```
 
 ## Distributing water around cluster (using packmol)
-* Install packmol following the official website.
+* Install packmol following the official website: https://m3g.github.io/packmol/
 
 ### Input files
 * water pdb file: `water.pdb`
@@ -64,4 +64,3 @@ cluster = read("cluster.xyz")
 cluster.cell = [30, 30, 30]
 write("cluster.pdb", cluster)
 ```
-
