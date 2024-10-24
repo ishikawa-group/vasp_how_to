@@ -1,7 +1,7 @@
 # Making nanocluster with ASE
 
 ## Making cluster
-```python{cmd}
+```python
 from ase.cluster import Icosahedron
 from ase.visualize import view
 from ase.io import write
