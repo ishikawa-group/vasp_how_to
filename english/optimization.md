@@ -64,7 +64,10 @@ IBRION =  2
 ---
 
 ## Optimization of surface
-* The geometry optimization of surface is different from those of molecule and bulk materials.
+* The geometry optimization of surface is mostly same with the bulk optimization, but several differences existss.
+
+### Fixing the surface
+* In surface optimization, part of the surface (or called slab) is fixed or frozen from its initial position.
 * This is because we often mimic the surface material by fixing (or freezing) the lower part of the system. This is reasonable, because, in reallity, only surface atoms moves significantly and lower part have similar structure with bulk material.
 * To do such calculation, we fix the lower part of the surface model and only relax the upper layers. This can be done with POSCAR setting.
 * Let's take the Pt surface as example ([file](./Pt_surface_POSCAR)). This is made by just changing the unit cell size by extending the z-direction (check it by `ase gui` or VESTA).
@@ -102,6 +105,36 @@ Cartesian
 * `F F F` or `T T T` of each atom is the answer to the question: *Do you want this atom to move?*. `F` means *False* thus does not move, and `T` means *True* so it allows to move atom.
 * `ase gui` of this POSCAR distinguishes fixed and free atoms (with check mark for atoms) while vesta does not make distinction.
 * After changing POSCAR, execute VASP and see the relaxed structure.
+
+#### Using ASE (Advanced topic)
+* With ASE, fixing the surface can be done by setting `constraint` property of `Atoms`.
+* To use this function, `tag` of Atoms should be used; tags are automatically set when surface is made with ASE.
+  + adsorbate: tag=0, surface layer: tag=1, etc.
+* By using this tag and `ase.constraints.FixAtoms`, the constraint property can be set.
+```python
+from ase.calculators.vasp import Vasp
+from ase.optimize import QuasiNewton
+from ase.constraints import FixAtoms
+from ase.bulid import fcc111fcc111
+
+a0 = 3.996
+k0 = 6
+size = [1,1,4]
+surf = fcc111(symbol='Pd', size=size, a=a0, vacuum=10.0)
+constraints = FixAtoms(indices=[atom.index for atom in surf if atom.tag <= 3])
+surf.constraints = constraints
+
+# using ASE optimizer
+calc = Vasp(prec='Normal', xc='PBE', encut=400.0,
+            ispin=1, ibrion=-1, nsw=0, kpts=[k0, k0, 1], 
+            sigma=0.05, potim=0.5, npar=4)
+surf.set_calculator(calc)
+dyn = QuasiNewton(surf, trajectory='pd-relax.traj')
+dyn.run(fmax=0.05)
+
+energy = surf.get_potential_energy()
+printf("Energy after relaxation: {energy} eV")
+```
 
 ## Exercise
 * Confirm the optimization process by `ase gui`.
