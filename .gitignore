@@ -11,3 +11,4 @@ WAVECAR
 XDATCAR
 vasprun.xml
 *.ai
+*.pdb

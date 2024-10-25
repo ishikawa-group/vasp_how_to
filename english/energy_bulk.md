@@ -27,7 +27,7 @@
 
 ### INCAR
 * Actually, INCAR for bulk/surface calculations can be very similar to those of molecules.
-* However, we are going to use `ISMEAR = 1` instead of `ISMEAR =0` in molecular calculation. This is because Pt is metals, so use of `ISMEAR = 1` is recommended for metallic systems.
+* However, we are going to use `ISMEAR = 1` instead of `ISMEAR = 0` in molecular calculation. This is because Pt is metals, so use of `ISMEAR = 1` is recommended for metallic systems.
   ```
   SYSTEM = Pt bulk
   ISMEAR =  1
@@ -68,7 +68,7 @@ Monkhorst Pack
 * To setup the Python environment, see; https://github.com/ishikawa-group/python_introduction/blob/main/setup.md.
 
 * To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following Python script.
-  ```python{cmd}
+  ```python
   from ase.io import write
   from ase.build import fcc111
 

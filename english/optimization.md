@@ -109,31 +109,19 @@ Cartesian
 #### Using ASE (Advanced topic)
 * With ASE, fixing the surface can be done by setting `constraint` property of `Atoms`.
 * To use this function, `tag` of Atoms should be used; tags are automatically set when surface is made with ASE.
-  + adsorbate: tag=0, surface layer: tag=1, etc.
+  + adsorbate: tag = 0, surface layer: tag = 1, etc.
+  + Lower (i.e. smaller in z-coordinate) surface layers have large tag values.
 * By using this tag and `ase.constraints.FixAtoms`, the constraint property can be set.
 ```python
-from ase.calculators.vasp import Vasp
-from ase.optimize import QuasiNewton
 from ase.constraints import FixAtoms
-from ase.bulid import fcc111
+from ase.build import fcc111
+from ase.io import write
+from ase.visualize import view
 
-a0 = 3.996
-k0 = 6
-size = [1,1,4]
-surf = fcc111(symbol='Pd', size=size, a=a0, vacuum=10.0)
-constraints = FixAtoms(indices=[atom.index for atom in surf if atom.tag <= 3])
+surf = fcc111(symbol='Pd', size=[3, 3, 4], a=3.99, vacuum=10.0)
+constraints = FixAtoms(indices=[atom.index for atom in surf if atom.tag >= 3])
 surf.constraints = constraints
-
-# using ASE optimizer
-calc = Vasp(prec='Normal', xc='PBE', encut=400.0,
-            ispin=1, ibrion=-1, nsw=0, kpts=[k0, k0, 1], 
-            sigma=0.05, potim=0.5, npar=4)
-surf.set_calculator(calc)
-dyn = QuasiNewton(surf, trajectory='pd-relax.traj')
-dyn.run(fmax=0.05)
-
-energy = surf.get_potential_energy()
-printf("Energy after relaxation: {energy} eV")
+write("POSCAR", surf)
 ```
 
 ## Exercise
