@@ -115,7 +115,7 @@ Cartesian
 from ase.calculators.vasp import Vasp
 from ase.optimize import QuasiNewton
 from ase.constraints import FixAtoms
-from ase.bulid import fcc111fcc111
+from ase.bulid import fcc111
 
 a0 = 3.996
 k0 = 6
