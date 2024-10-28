@@ -32,7 +32,11 @@ ISMEAR =  1
 NSW    = 10
 IBRION =  2
 ```
-* `IBRION = 1 or 2` specifies to do geometry optimization. The difference of 1 and 2 is the optimization algorithm. Usually, it is recommended to use 2.
+* `IBRION = 1 or 2` specifies to do geometry optimization. The difference of 1 and 2 is the optimization algorithm.
+  + `IBRION = 1`: RMM-DIIS algorithm
+  + `IBRION = 2`: Congugate-Gradient algorithm
+  + Usually, it is recommended to use 2.
+  + For conjugate-gradient, see: https://qiita.com/Dason08/items/27559e192a6a977dd5e5
 * `NSW` is the maximum number of optimization step. Usually, set this value to 10-200 steps.
 
 ### KPOINTS and POTCAR
