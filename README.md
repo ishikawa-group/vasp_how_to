@@ -46,11 +46,11 @@
 4th day (10/25)
   + [energy calculation of bulk and surface](./english/energy_bulk.md)
   + [geometry optimization](./english/optimization.md)
-  + [adsorption](./english/adsorption.md)
 
 5th day (11/1)
-  + [molecular dynamics](./english/molecular_dynamics.md)
+  + [adsorption](./english/adsorption.md)
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
+  + [molecular dynamics](./english/molecular_dynamics.md)
   <!-- + [charge density analysis](./english/charge.md)
   + [density of state](./english/dos.md)
   -->
