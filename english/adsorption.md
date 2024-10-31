@@ -1,4 +1,4 @@
-# Adsorption and surface reaction
+# Adsorption
 * In this section, we will see how to calculate the adsorption energy.
 * When we considering the catalytic reaction using surface, adsorption is the first event.
 * Chemical species adsorbed on a surface is called **adsorbates**.
