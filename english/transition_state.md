@@ -8,10 +8,10 @@
 
 ## Procedure
 1. Find the structures of reactant and product states by carrying out the geometry optimization.
-2. Rename the reactant and product final POSCAR files (or CONTCAR) to *POSCAR1* and *POSCAR2*, respectively. Then put these files to the current directory.
+2. Rename the reactant and product final `POSCAR` files (or `CONTCAR`) to `POSCAR1` and `POSCAR2`, respectively. Then put these files to the current directory.
 3. Make interpolated structure as the initial structures of NEB. Here, we make 4 interpolated structures.
   + `nebmake.pl POSCAR1 POSCAR2 4`
-4. Find the directories 00, 01, 02, 03, 04, and 05 is made. Put the POSCAR1 and POSCAR2 files to 00 and 05, respectively.
+4. Find the directories 00, 01, 02, 03, 04, and 05 is made. Put the `POSCAR1` and `POSCAR2` files to 00 and 05, respectively.
 5. Make INCAR file
 ```
 ...

@@ -21,13 +21,9 @@
 
 # Materials Simulation (TAC-MI) lecture
 * This repositry is also used for the TAC-MI lecture at Tokyo-Tech periodic course (2024 Oct. & Nov.)
-
 * The lecture plan is below and associated contents are in the links.
-
 * Some lecturs have exercizes. There are not used for the evaluation of the grade.
-
 <!-- * The deadline of the report submission is **12/8**. -->
-
 * If you have any question, feel free to ask: ishikawa.a.ai@m.titech.ac.jp
 
 ## Lecture plans
@@ -50,10 +46,8 @@
 5th day (11/1)
   + [adsorption](./english/adsorption.md)
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
-  + [molecular dynamics](./english/molecular_dynamics.md)
-  <!-- + [charge density analysis](./english/charge.md)
-  + [density of state](./english/dos.md)
-  -->
 
 6th day (11/8)
-  + Free day
+  + [molecular dynamics](./english/molecular_dynamics.md)
+  + [charge density analysis](./english/charge.md)
+  + [density of state](./english/dos.md)
