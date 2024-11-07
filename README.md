@@ -23,8 +23,14 @@
 * This repositry is also used for the TAC-MI lecture at Tokyo-Tech periodic course (2024 Oct. & Nov.)
 * The lecture plan is below and associated contents are in the links.
 * Some lecturs have exercizes. There are not used for the evaluation of the grade.
-<!-- * The deadline of the report submission is **12/8**. -->
+
+---
+
+* The task for report (evaluation) is shown [on this page](./english/task.md).
+* The deadline of the report submission is **11/22**.
 * If you have any question, feel free to ask: ishikawa.a.ai@m.titech.ac.jp
+
+---
 
 ## Lecture plans
 1st day (10/4)
@@ -48,6 +54,7 @@
   + [surface reaction (nudged elastic band: NEB)](./english/transition_state.md)
 
 6th day (11/8)
-  + [molecular dynamics](./english/molecular_dynamics.md)
-  + [charge density analysis](./english/charge.md)
   + [density of state](./english/dos.md)
+  + [charge density analysis](./english/charge.md)
+  + [molecular dynamics](./english/molecular_dynamics.md)
+ 
