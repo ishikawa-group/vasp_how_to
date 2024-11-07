@@ -1,7 +1,7 @@
 # Report for Materials Simulation
 * Choose one of the following two tasks, depending on your background.
 * After finishing the task, **make one-page presentation slide (PowerPoint, KeyNote, etc.)** summarizing your computational result.
-* Please send it by e-mail in any format (.ppt, .pdf, .jpg etc.)
+* Please send it by e-mail to ishikawa.a.ai@m.titech.ac.jp or T2SCHOLA, in any format (.ppt, .pdf, .jpg etc.)
 
 # 1. Surface diffusion
 ## Background
