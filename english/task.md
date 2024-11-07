@@ -30,6 +30,12 @@
 
 ## Hint
 * Choosing two from Ag, Pd, Rh, Ru would be fine.
-* When calculating the adsorption energy, use $ E_{ads} = E_{\rm O-Surf} - \left(E_{\rm surf} + 1/2 E_{\rm O_2} \right) $. You need to calculate O2 molecule. Since O2 molecule has triplet spin state, use spin-polarized calculation (by setting `ISPIN = 2` in `INCAR`).
+* When calculating the adsorption energy, use the following:
+
+$$
+E_{ads} = E_{\rm O-Surf} - \left(E_{\rm surf} + 1/2 E_{\rm O_2} \right)
+$$
+
+* You need to calculate O2 molecule. Since O2 molecule has triplet spin state, use spin-polarized calculation (by setting `ISPIN = 2` in `INCAR`).
 * Non-spin-polarized calculation is OK for surfaces and O-adsorbed surfaces.
 * Plotting d-DOS instead of total DOS makes more clear difference of two metals.
