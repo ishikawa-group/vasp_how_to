@@ -24,7 +24,6 @@
 * The lecture plan is below and associated contents are in the links.
 * Some lecturs have exercizes. There are not used for the evaluation of the grade.
 
-<!--
 ---
 
 * The task for report (evaluation) is shown [on this page](./english/task.md).
@@ -32,7 +31,6 @@
 * If you have any question, feel free to ask: ishikawa.a.ai@m.titech.ac.jp
 
 ---
--->
 
 ## Lecture plans
 1st day (10/4)
