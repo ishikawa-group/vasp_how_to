@@ -1,9 +1,13 @@
 # Density of state (DOS)
 * DOS represents how densely the orbitals are packed in each energy range.
 * A larger value of DOS means that the states are more densely packed in that energy range.
+
+## Input file
+* No specifical tag is necessary to output the total DOS, but `LORBIT` need to be set when PDOS is needed (mentioned later).
 * Note that the correct DOS cannot be obtained unless the number of k-points is sufficiently large.
 * The smearing parameters in the `INCAR` (ISMEAR, SIGMA) also affect the accuracy of the DOS.
 
+## After VASP calculation
 * A file called `DOSCAR` will be output.
 * Be aware that the output differs between spin-polarized and non-polarized calculations.
 * For non-polarized calculations, the meaning of each column in `DOSCAR` is as follows:
