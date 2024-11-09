@@ -35,7 +35,7 @@
     + This value is written in *ZVAL in POTCAR*.
 
     $$
-    {\rm charge} = -(N_{\text{electron in molecule}} - {\rm ZVAL})
+    {\rm charge} = -(N_{\text{calculated number of electron}} - {\rm ZVAL})
     $$
 
 # Charge density
