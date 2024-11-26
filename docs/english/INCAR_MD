@@ -1,0 +1,16 @@
+ ISMEAR = 0
+ SIGMA  = 0.10
+
+ GGA       =  PE
+
+ IBRION =  0
+ POTIM  =  1.0
+ SMASS  = -1    # Nose-Hoover for > 0, Berendsen for -1.
+ NSW    =  100
+ NBLOCK =  10 # frequency for temperature scaling in Berendsen
+ TEBEG  =  300
+ TEEND  =  300
+
+ NPAR   = 10
+ NSIM   = 10
+

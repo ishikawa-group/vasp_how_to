@@ -8,11 +8,13 @@
 
 ## Ensembles in MD calculation
 * In MD simulation, we need to choose **conserved variables**. Possible variables are
-    + $N$: number of particles (atoms, molecules)
-    + $V$: volume of the simulation cell
-    + $T$: temperature
-    + $P$: pressure
-    + $H$: enthalpy
+
+    * $N$: number of particles (atoms, molecules)
+    * $V$: volume of the simulation cell
+    * $T$: temperature
+    * $P$: pressure
+    * $H$: enthalpy
+
 * The conserved variables are the variables kept constant during the MD simulation.
 * Usually, three variables are chosen for the MD calculation, and the MD simulation is labeled by these conserved variables.
 * Four types of ensembles are possible in VASP: *NVE*, *NVT*, *NpT*, and *NpH*. Among them, formar two ensembles are widely used, and also called *microcanonical ensemble* and *canonical ensemble*, respectively.
@@ -45,6 +47,7 @@
     + `MDALGO = 2`.
 
 * So the INCAR part for the Berendsen NVT MD becomes like
+
 ```
 IBRION =  0
 POTIM  =  1.0
@@ -54,6 +57,7 @@ NBLOCK =  10
 TEBEG  =  300
 TEEND  =  300
 ```
+
 * In Nose-Hoover, temperature fluctuates around the target value. Adjusting the `SMASS` value may resolve this to some extent.
 * `SMASS` in Nose-Hoover controls the frequency of the coupling to the heat bath, so it is a parameter we need to fix. Usually, larger `SMASS` leads slow increase/decrease of temperature.
 

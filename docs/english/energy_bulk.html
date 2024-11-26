@@ -1,0 +1,520 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Energy calculation of bulk · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.0.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex-mhchem/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="molecular_dynamics.html" />
+    
+    
+    <link rel="prev" href="charge.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="dos.html">
+            
+                <a href="dos.html">
+            
+                    
+                    Density of state
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="charge.html">
+            
+                <a href="charge.html">
+            
+                    
+                    Charge analysis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="energy_bulk.html">
+            
+                <a href="energy_bulk.html">
+            
+                    
+                    Energy calculation of bulk
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="molecular_dynamics.html">
+            
+                <a href="molecular_dynamics.html">
+            
+                    
+                    Molecular dynamics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Geometry optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="transition_state.html">
+            
+                <a href="transition_state.html">
+            
+                    
+                    Transition state optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="energy_molecule.html">
+            
+                <a href="energy_molecule.html">
+            
+                    
+                    Energy calculation of molecule
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="adsorption.html">
+            
+                <a href="adsorption.html">
+            
+                    
+                    Adsorption
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Energy calculation of bulk</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="energy-calculation-bulk-and-surface">Energy calculation (bulk and surface)</h1>
+<ul>
+<li>In this section, we will see how to do the energy calculation of the bulk material and the surface of the bulk material.</li>
+<li>Please see <a href="energy_molecule.html">the energy calculation for molecules</a> if not yet.</li>
+<li>The bulk material is crystal surface, which is periodic in three dimensions (i.e. x-, y-, and z-directions).</li>
+</ul>
+<h2 id="downloading-cif-files">Downloading CIF files</h2>
+<ul>
+<li>To do the bulk/surface calcuation, Crystal information file (CIF) file is often needed.</li>
+<li>The CIF file can be downloaded from <strong>Materials project</strong>, <strong>ICSD</strong>, or others.</li>
+<li>Here, a simple CIF file (<code>Pt.cif</code>) is prepared so please use it.</li>
+<li>The CIF file contains the information of atomic position and unit cell information.</li>
+</ul>
+<h2 id="bulk">Bulk</h2>
+<ul>
+<li>Similar to the calculations for molecules, we need to make <code>POSCAR</code>, <code>POTCAR</code>, <code>INCAR</code>, and <code>KPOINTS</code> files.</li>
+</ul>
+<h3 id="making-poscar">Making POSCAR</h3>
+<ul>
+<li>Here we will see how to make a POSCAR file from a cif file using VESTA.</li>
+<li>VESTA is the free software for visualization and editing the molecular/bulk/surface structure: <a href="https://jp-minerals.org/vesta/jp/" target="_blank">https://jp-minerals.org/vesta/jp/</a></li>
+<li>You can visualize CIF, POSCAR, xyz (and other) files with VESTA.</li>
+<li>To make the POSCAR file for bulk calculation, open the CIF file and then<ol>
+<li><code>File</code> -&gt; <code>Export Data</code> and then choose <code>VASP file</code> in <code>File type</code>.</li>
+<li>Any name is OK.</li>
+<li>Either "fractional coordinate" or "Cartesian coordinate" is OK.</li>
+<li>Rename the file to <code>POSCAR</code>.</li>
+</ol>
+</li>
+</ul>
+<h3 id="potcar">POTCAR</h3>
+<ul>
+<li>Do not forget to make POTCAR file: <code>cat {POTCAR_directory}/Pt/POTCAR &gt; POTCAR</code>.</li>
+</ul>
+<h3 id="incar">INCAR</h3>
+<ul>
+<li>Actually, INCAR for bulk/surface calculations can be very similar to those of molecules.</li>
+<li>However, we are going to use <code>ISMEAR = 1</code> instead of <code>ISMEAR = 0</code> in molecular calculation. This is because Pt is metals, so use of <code>ISMEAR = 1</code> is recommended for metallic systems.<pre><code>SYSTEM = Pt bulk
+ISMEAR =  1
+NSW    =  0
+IBRION = -1
+</code></pre></li>
+</ul>
+<h3 id="kpoints">KPOINTS</h3>
+<ul>
+<li>For the bulk calculation,<pre><code>bulk
+0
+Monkhorst Pack
+3 3 3
+0 0 0
+</code></pre></li>
+</ul>
+<h3 id="executing-vasp">Executing VASP</h3>
+<ul>
+<li>Execution of VASP is the same with the energy calculation of molecule.<ul>
+<li>edit <code>run.sh</code> script (or any name)</li>
+<li><code>qsub run.sh</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="exercise">Exercise</h3>
+<ul>
+<li>Download the Au (gold) cif file from web (Materials Project etc.) and perform the bulk structure calculation.</li>
+</ul>
+<hr></hr>
+<h2 id="surface">Surface</h2>
+<ul>
+<li>If you want to do calculations for surfaces, the situation is a little different because the surface loses one periodic direction. Usually this axis is set as z-direction.</li>
+<li>To cut the periodicity of z-direction, a vacant region called <strong>vacuum layer</strong> in inserted in the surface calculaiton.</li>
+</ul>
+<h3 id="making-poscar">Making POSCAR</h3>
+<ul>
+<li>It is possible to make the surface file with VESTA; see <a href="https://qiita.com/h-nabata/items/290a575e07a2e56c7c94" target="_blank">https://qiita.com/h-nabata/items/290a575e07a2e56c7c94</a></li>
+<li>It is rather complicated. So we will use Atomic simulation environment (ASE) instead.</li>
+</ul>
+<h4 id="ase">ASE</h4>
+<ul>
+<li>ASE is useful Python library for theoretical/computational atomic simulations.</li>
+<li><p>To setup the Python environment, see; <a href="https://github.com/ishikawa-group/python_introduction/blob/main/setup.md" target="_blank">https://github.com/ishikawa-group/python_introduction/blob/main/setup.md</a>.</p>
+</li>
+<li><p>To make the POSCAR file for surface (e.g. fcc 111 surface), write and execute the following Python script.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> ase.io <span class="hljs-keyword">import</span> write
+<span class="hljs-keyword">from</span> ase.build <span class="hljs-keyword">import</span> fcc111
+
+surf = fcc111(a=<span class="hljs-number">3.92</span>, symbol=<span class="hljs-string">"Pt"</span>, size=[<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>], vacuum=<span class="hljs-number">10.0</span>)
+write(<span class="hljs-string">"POSCAR"</span>, surf)
+</code></pre>
+</li>
+<li>You can check the structure with VESTA, or using <code>ase gui POSCAR</code> if you've installed the ASE.</li>
+<li>The above script, using the ASE function <code>fcc111</code>, makes the Pt surface with the supercell size of 2x2x4, and introduces the vacuum layer of 10 Angstrom in z-direction. As noted, this vacuum layer is necessary to cut the interaction between upper and lower periodic slabs.</li>
+<li>More details are given in <a href="adsorption.html">adsorption.md</a>.</li>
+</ul>
+<h4 id="fixing-some-atoms">Fixing some atoms</h4>
+<ul>
+<li>In surface calculations, the lower part of the slab is usually fixed to mimic the bulk structure.</li>
+<li>To fix some atoms, make the POSCAR as following:<pre><code>Pt
+1.000
+  11.074    0.000    0.000
+   0.000   11.495    0.000
+   0.000    0.000   29.090
+Pt
+32
+Selective dynamics
+Cartesian
+0.000  2.874  0.100   F F F
+2.768  0.000  0.100   F F F
+0.000  8.621  0.100   T T T
+...
+</code></pre></li>
+<li>Put <strong>Selective dynamics</strong> in after the atomic number section.</li>
+<li>Put <code>F F F</code> at the end of atomic species, to freeze x-, y-, and z-coordinate of that atom.</li>
+<li><code>F</code> means <em>.FALSE. to move that atom</em>, and <code>T</code> means <em>.TRUE. to move</em>. So open some editor, and put <code>F F F</code> at the atoms you want to freeze.</li>
+</ul>
+<h3 id="potcar">POTCAR</h3>
+<ul>
+<li>Same with bulk or molecular calculations.</li>
+</ul>
+<h3 id="kpoints">KPOINTS</h3>
+<ul>
+<li>For the surface calculation, just one k-point is OK for the non-periodic direction. So when the vaccum layer is in the z-direction, following is fine.<pre><code>surface
+0
+Monkhorst Pack
+3 3 1
+0 0 0
+</code></pre></li>
+<li>Using more k-points gives higher accuracy, but larger computational cost.</li>
+</ul>
+<h3 id="executing-vasp">Executing VASP</h3>
+<ul>
+<li>Same with bulk or molecular calculations.</li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Perform the Pt surface calculation by yourself.</li>
+<li>Perform the Pt bulk calculation, and compare the Pt bulk and surface calculations by taking the <strong>energy per Pt atom</strong>. Which is lower (lower is more stable), bulk or surface?</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="charge.html" class="navigation navigation-prev " aria-label="Previous page: Charge analysis">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="molecular_dynamics.html" class="navigation navigation-next " aria-label="Next page: Molecular dynamics">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Energy calculation of bulk","level":"1.4","depth":1,"next":{"title":"Molecular dynamics","level":"1.5","depth":1,"path":"english/molecular_dynamics.md","ref":"english/molecular_dynamics.md","articles":[]},"previous":{"title":"Charge analysis","level":"1.3","depth":1,"path":"english/charge.md","ref":"english/charge.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"english/energy_bulk.md","mtime":"2024-10-25T04:21:29.435Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2024-11-26T06:45:28.008Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-katex-mhchem/katex.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -4,24 +4,31 @@
 * Chemical species adsorbed on a surface is called **adsorbates**.
 * Adsorbates will undergo the **surface reaction**, which is a reaction that employes the surface. Usually, a surface reaction is easier to occur than the corresponding gas-phase reaction.
 * There are two types of the surface reaction; one is called **Langmuir-Hinshelwood** type and the other is **Eley-Rideal** type. The former is the reaction that occurs *between the adsorbed species*. In the latter, the reaction occurs *between the adsorbed species and the gas-phase species*.
-* Therefore, we need to consider following four types of reactions along the adsorption event (the asterisk $*$ means the surface, and species with asterisk is the adsorbate).
+* Therefore, we need to consider following four types of reactions along the adsorption event (the asterisk means the surface, and species with asterisk is the adsorbate).
 
 1. Adsorption
-  ```math
-  \ce{A + $*$ -> A$*$}
-  ```
+
+$$
+\ce{A + surf -> A-surf}
+$$
+
 2. Surface reaction (Langmuir-Hinshelwood)
-  ```math
-  \ce{A$*$ + B$*$ -> C$*$}
-  ```
+
+$$
+\ce{A-surf + B-surf -> C-surf}
+$$
+
 3. Surface reaction (Eley-Rideal) 
-  ```math
-  \ce{A$*$ + D -> E}
-  ```
+
+$$
+\ce{A-surf + D -> E}
+$$
+
 4. Desorption
-  ```math
-  \ce{F$*$ -> F + $*$}
-  ```
+
+$$
+\ce{F-surf -> F + surf}
+$$
 
 ## Calculating adsorption energy
 * As an example, we will see how to calculate the hydrogen adsorption energy on the Ru surface.
@@ -32,6 +39,7 @@
 * The followings are the Python script using ASE.
 
 #### 1. Simplest approach
+
 ```python
 from ase import Atom
 from ase.io import write
@@ -55,10 +63,12 @@ write("POSCAR2", clean_surface)
 # output H-adsorbed surface POSCAR
 write("POSCAR3", surf)
 ```
+
 * Advantage: easy
 * Disadvantage: non-generalizable (especally for high Miller index surfaces)
 
 #### 2. General approach
+
 ```python
 from ase import Atom
 from ase.io import write
@@ -74,6 +84,7 @@ surf = surf*[3, 3, 1]
 add_adsorbate(slab=surf, adsorbate=Atom("H"), height=1.2, offset=(0.22, 0.11))
 ...
 ```
+
 * Advantage: a bit complex
 * Disadvantage: general
 
@@ -83,13 +94,17 @@ add_adsorbate(slab=surf, adsorbate=Atom("H"), height=1.2, offset=(0.22, 0.11))
 * Geometry optimization calculation should be done.
 * After the calculation, get the energies by takeing the value of `energy(sigma->0)`.
 * Then the adsorption energy ($E_{\rm ads}$) can be calculated as
-```math
+
+$$
 E_{\rm ads} = E_{\rm surf-ads} - \left(E_{\rm surf} + E_{\rm adsorbate}\right)
-```
+$$
+
 * Therefore in this case, the adsortion energy is
-```math
+
+$$
 E_{\rm ads} = E_\ce{Ru-H} - \left(E_\ce{Ru} + \frac{1}{2}E_\ce{H2}\right)
-```
+$$
+
 * The reference adsorption energy is -0.63 eV (fcc hollow). Compare with your calculated value.
   https://www.researchgate.net/figure/Adsorption-sites-for-H-on-the-Ru0001-surface-with-corresponding-energies-of-adsorption_fig1_340125395
 
@@ -117,3 +132,4 @@ view(surf)
 ## Exercise
 1. Calculate the adsorption energy on other sites. The "hollow" keyword in `add_adsorbate` for hcp0001 puts adsorbate on the fcc hollow site. Use other keywords such as "ontop" or "bridge", and compare with the reference.
 2. Adjust the `offset` value in the `add_adsorbate`, and put the H atom to the hcp hollow site. Then calculate the $E_{\rm ads}$.
+

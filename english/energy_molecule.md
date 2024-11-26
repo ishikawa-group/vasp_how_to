@@ -9,12 +9,14 @@
 * This file specifies the computational condition in VASP. In this file, you need to specify *tag-variable pairs*.
 * Variable might be integer, float, logical (.TRUE. or .FALSE.), and string.
 * The minimal INCAR file is something like below. The details will be explained later or see VaspWiki website.
+
 ```
 SYSTEM = CO molecule in a box
 ISMEAR =  0
 NSW    =  0
 IBRION = -1
 ```
+
 * The keywords above is just simple examples of the INCAR tags. These mean
   + `SYSTEM`: A free keyword to identify the calculation.
   + `ISMEAR`: This tag sets a smearing method for the electron occupation near the Fermi level.
@@ -28,6 +30,7 @@ IBRION = -1
   1. The top part gives the size of the **unit cell**.
   2. The middle part gives the **number of each elements**.
   3. The last part gives **x-, y-, and z-coordinates** of atoms.
+
 ```
 CO molecule in a box
 1.0
@@ -40,6 +43,7 @@ Cartesian
 0.0 0.0 0.0
 0.0 0.0 1.1
 ```
+
 * Each lines have following meanings:
     + `CO molecule in a box`: Title
     + `1.0`          : universal scaling parameters
@@ -53,6 +57,7 @@ Cartesian
     + `0.0 0.0 1.1`  : second atom x, y, z (in Angstrom)
 * Note that the first line of xyz-coordinate part has two lines. The first line corresponds to the carbon atom, and the second does the oxygen atom. So the xyz-coordinate part uses the information of the middle part (element number specification).
 * For example, to calculate CO2 molecule
+
 ```
 ...
 C O
@@ -67,6 +72,7 @@ cart
 * This file specifies the number of k-points, used for the reciprocal lattice integration.
 * The details of the k-points will be given elsewhere.
 * For the isolated atom/molecule calculation, you should use the following KPOINTS file corresponding to the **Gamma-point calculation**.
+
 ```
 Gamma-point only
 0
@@ -90,7 +96,7 @@ Monkhorst Pack
 * When all the files i.e. INCAR, POSCAR, KPOINTS, and POTCAR are made, you can execute the vasp in the directory.
 * Note: the following command is **if you have VASP in your computer. If you are using supercomputers, use different command (see the following section)**.
     + `vasp_std >& {output_filename}`
-* To execute above, `vasp_std` should be included in the directories in your `$PATH`.
+* To execute above, `vasp_std` should be included in the directories in your `PATH`.
 
 # How to execute job in supercomputers
 * Now we will asssume using TSUBAME.
@@ -102,28 +108,7 @@ Monkhorst Pack
 * We use the library called the **message passing interface (MPI)** to do the parallel calculation (using single or multiple computational nodes)
 * The script example is written here:
     + https://helpdesk.t3.gsic.titech.ac.jp/manuals/handbook.ja/jobs/
-* Here we modify the example script with MPI and intel-mpi. The file is named as `run.sh`.
-```bash
-#!/bin/sh
-#$ -cwd
-# Uses one node of F-type
-#$ -l node_f=1
-#$ -l h_rt=0:10:00
-#$ -N flatmpi
-
-# pass to the VASP executable file
-PRG=/home/your_vasp_dir/bin/vasp_std
-
-. /etc/profile.d/modules.sh
-module load cuda
-module load intel
-
-# Loading Intel MPI
-module load intel-mpi
-
-# Uses 8 processes with MPI
-mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
-```
+* Here we modify the example script with MPI and intel-mpi. The file is named as `run.sh` (see somewhere).
 
 ## Submitting a job
 * qsub: `qsub -g [TSUBAME_group] run.sh`
@@ -150,9 +135,11 @@ mpiexec.hydra -ppn 8 -n 8 ${PRG} >& vasp.out
 * For visualization, you can use **VESTA** for free: https://jp-minerals.org/vesta/jp/
 * After installing VESTA, you can see the structure of POSCAR by "Open" -> "POSCAR".
 * It is useful to set alias to `~/.bashrc` file (in mac)
+
   ```bash
   alias vesta=/Applications/VESTA.app/Contents/MacOS/VESTA
   ```
+  
   then you can use `vesta POSCAR`.
 
 ## ASE

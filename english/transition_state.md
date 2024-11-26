@@ -13,6 +13,7 @@
   + `nebmake.pl POSCAR1 POSCAR2 4`
 4. Find the directories 00, 01, 02, 03, 04, and 05 is made. Put the `POSCAR1` and `POSCAR2` files to 00 and 05, respectively.
 5. Make INCAR file
+
 ```
 ...
 IBRION  = 2
@@ -24,6 +25,7 @@ SPRING  = -5
 ISYM    = 0   # Better to turn off the symmetry
 ...
 ```
+
 6. Execute the VASP.
 
 ## Advanced topics
