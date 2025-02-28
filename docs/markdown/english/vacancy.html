@@ -352,65 +352,75 @@ where:<ul>
 </ul>
 <h3 id="incar">INCAR</h3>
 <ul>
-<li>Following is an example INCAR for oxygen vacancy calculations:
-```
-ENCUT = 400        # Energy cutoff
+<li>Following is an example INCAR for oxygen vacancy calculations:</li>
+</ul>
+<pre><code>ENCUT = 400        # Energy cutoff
 ISMEAR = 0         # Gaussian smearing
 SIGMA = 0.05       # Smearing width
-LREAL = Auto       # Real space projection</li>
-</ul>
-<h1 id="structural-relaxation">Structural relaxation</h1>
-<p>IBRION = 2         # Conjugate gradient algorithm
+LREAL = Auto       # Real space projection
+
+# Structural relaxation
+IBRION = 2         # Conjugate gradient algorithm
 NSW = 100          # Maximum number of ionic steps
-EDIFFG = -0.05     # Force convergence criterion (eV/Å)</p>
-<p>LCHARG = .TRUE.    # Write charge density</p>
-<pre><code>
-## Analysis workflow
-### 1. Pristine crystal calculation
-* First, calculate the total energy and electronic structure of the pristine crystal:
-1. Prepare POSCAR with the pristine crystal structure
-2. Set up INCAR, KPOINTS, and POTCAR files
-3. Run VASP calculation
-4. Extract the total energy ({% math_inline %}E_{\rm pristine}{% endmath_inline %})
+EDIFFG = -0.05     # Force convergence criterion (eV/Å)
 
-### 2. Defect calculation
-* Next, create and calculate the system with an oxygen vacancy:
-1. Create a supercell from the pristine crystal
-2. Remove one oxygen atom to create the vacancy
-3. Adjust the INCAR file for defect calculation
-4. Run VASP calculation
-5. Extract the total energy ({% math_inline %}E_{\rm defect}{% endmath_inline %})
-
-### 3. Formation energy calculation
-* Calculate the vacancy formation energy using the formula provided earlier.
-
-### 4. Electronic structure analysis
-* Analyze the impact of the vacancy on the electronic structure:
-1. Density of States (DOS) analysis
-  - Compare DOS of pristine and defective systems
-  - Identify defect states in the band gap
-2. Charge density analysis
-  - Visualize the charge density difference between pristine and defective systems
-  - Identify charge redistribution around the vacancy
-  - Charge density analysis method is written in other file ("charge.md")
-  - Depending on the vacancy type, the vacancy position has some charge density.
-    + For example, when O atom is removed from MgO, two electron should be the vacancy position because O atom in MgO is actually {% math_inline %}\ce{O^{2-}}{% endmath_inline %}.
-    + When removing {% math_inline %}\ce{O^{2-}}{% endmath_inline %} from MgO, no electron is on the vacancy position. In this case, the positive charge (from {% math_inline %}\ce{Mg^{2+}}{% endmath_inline %}) tend to be on the vacancy position (thus {% math_inline %}\rm{V_O^{••}}{% endmath_inline %}).
-  - To identify such charge state, charge density plot is useful.
-
-### 5. Structural analysis
-* Analyze the structural relaxation around the vacancy:
-1. Measure the displacement of atoms neighboring the vacancy
-2. Identify any symmetry breaking or structural distortions
-
-## Practical considerations
-### Hybrid functionals
-* For more accurate electronic structure and formation energies, hybrid functionals (e.g., HSE06) can be used:
-</code></pre><p>LHFCALC = .TRUE.
+LCHARG = .TRUE.    # Write charge density
+</code></pre><h2 id="analysis-workflow">Analysis workflow</h2>
+<h3 id="1-pristine-crystal-calculation">1. Pristine crystal calculation</h3>
+<ul>
+<li>First, calculate the total energy and electronic structure of the pristine crystal:</li>
+<li>Prepare POSCAR with the pristine crystal structure</li>
+<li>Set up INCAR, KPOINTS, and POTCAR files</li>
+<li>Run VASP calculation</li>
+<li>Extract the total energy (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{\rm pristine}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">pristine</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>)</li>
+</ul>
+<h3 id="2-defect-calculation">2. Defect calculation</h3>
+<ul>
+<li>Next, create and calculate the system with an oxygen vacancy:</li>
+<li>Create a supercell from the pristine crystal</li>
+<li>Remove one oxygen atom to create the vacancy</li>
+<li>Adjust the INCAR file for defect calculation</li>
+<li>Run VASP calculation</li>
+<li>Extract the total energy (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{\rm defect}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">defect</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</li>
+</ul>
+<h3 id="3-formation-energy-calculation">3. Formation energy calculation</h3>
+<ul>
+<li>Calculate the vacancy formation energy using the formula provided earlier.</li>
+</ul>
+<h3 id="4-electronic-structure-analysis">4. Electronic structure analysis</h3>
+<ul>
+<li>Analyze the impact of the vacancy on the electronic structure:</li>
+<li>Density of States (DOS) analysis<ul>
+<li>Compare DOS of pristine and defective systems</li>
+<li>Identify defect states in the band gap</li>
+</ul>
+</li>
+<li>Charge density analysis<ul>
+<li>Visualize the charge density difference between pristine and defective systems</li>
+<li>Identify charge redistribution around the vacancy</li>
+<li>Charge density analysis method is written in other file ("charge.md")</li>
+<li>Depending on the vacancy type, the vacancy position has some charge density.<ul>
+<li>For example, when O atom is removed from MgO, two electron should be the vacancy position because O atom in MgO is actually <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">O</mi><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mn>2</mn><mo>−</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\ce{O^{2-}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8873em;"></span><span class="mord"><span class="mord mathrm">O</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.07847em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">−</span></span></span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>When removing <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">O</mi><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mn>2</mn><mo>−</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\ce{O^{2-}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8873em;"></span><span class="mord"><span class="mord mathrm">O</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.07847em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">−</span></span></span></span></span></span></span></span></span></span></span></span></span> from MgO, no electron is on the vacancy position. In this case, the positive charge (from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi></mrow><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\ce{Mg^{2+}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0818em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">Mg</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.07847em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span></span></span></span>) tend to be on the vacancy position (thus <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="normal">V</mi><mi mathvariant="normal">O</mi><mtext>••</mtext></msubsup></mrow><annotation encoding="application/x-tex">\rm{V_O^{••}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9587em;vertical-align:-0.2753em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.363em;"><span style="top:-2.4247em;margin-left:-0.0139em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">O</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">••</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2753em;"><span></span></span></span></span></span></span></span></span></span></span></span>).</li>
+</ul>
+</li>
+<li>To identify such charge state, charge density plot is useful.</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-structural-analysis">5. Structural analysis</h3>
+<ul>
+<li>Analyze the structural relaxation around the vacancy:</li>
+<li>Measure the displacement of atoms neighboring the vacancy</li>
+<li>Identify any symmetry breaking or structural distortions</li>
+</ul>
+<h2 id="practical-considerations">Practical considerations</h2>
+<h3 id="hybrid-functionals">Hybrid functionals</h3>
+<ul>
+<li>For more accurate electronic structure and formation energies, hybrid functionals (e.g., HSE06) can be used:<pre><code>LHFCALC = .TRUE.
 HFSCREEN = 0.2
 AEXX = 0.25
-```</p>
-<ul>
+</code></pre></li>
 <li>Using standard GGA functionals (such as PBE) is known to lead delocalized charge density. In reality, the charge density of oxygen vacancy material should localzed to the vacancy position. The hybrid functionals (or DFT + U method) is known to fix this problem.</li>
 <li>Note that hybrid functional calculations are computationally more demanding.</li>
 </ul>
@@ -510,7 +520,7 @@ AEXX = 0.25
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Vacancy","level":"1.6","depth":1,"next":{"title":"Molecular dynamics","level":"1.7","depth":1,"path":"markdown/english/molecular_dynamics.md","ref":"./markdown/english/molecular_dynamics.md","articles":[]},"previous":{"title":"Adsorption","level":"1.5","depth":1,"path":"markdown/english/adsorption.md","ref":"./markdown/english/adsorption.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/english/vacancy.md","mtime":"2025-02-28T03:24:07.537Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-28T07:42:06.023Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Vacancy","level":"1.6","depth":1,"next":{"title":"Molecular dynamics","level":"1.7","depth":1,"path":"markdown/english/molecular_dynamics.md","ref":"./markdown/english/molecular_dynamics.md","articles":[]},"previous":{"title":"Adsorption","level":"1.5","depth":1,"path":"markdown/english/adsorption.md","ref":"./markdown/english/adsorption.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/english/vacancy.md","mtime":"2025-02-28T07:47:11.224Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-28T07:48:24.699Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

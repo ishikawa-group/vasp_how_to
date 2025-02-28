@@ -47,6 +47,7 @@ $$
 
 ### INCAR
 * Following is an example INCAR for oxygen vacancy calculations:
+
 ```
 ENCUT = 400        # Energy cutoff
 ISMEAR = 0         # Gaussian smearing
