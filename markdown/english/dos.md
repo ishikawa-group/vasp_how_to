@@ -30,9 +30,10 @@
 
 ### Using vaspkit
 * vaspkit is quite easy to use. Just type `vaspkit` in terminal, and follow the instruction.
-* To generate the DOS-related functions, type `11`.
-* To get the total DOS, type `111`.
-* Total DOS file `TDOS.dat` is generated. The energy position is shifted so as the Fermi energy becomes 0.
+* Total DOS
+  + To generate the DOS-related functions, type `11`.
+  + To get the total DOS, type `111`.
+  + Total DOS file `TDOS.dat` is generated. The energy position is shifted so as the Fermi energy becomes 0.
 
 ## Plot
 * Copy `*.dat` file generated from vaspkit. Now it is easy to make plot.
