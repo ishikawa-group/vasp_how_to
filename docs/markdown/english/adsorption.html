@@ -1,0 +1,558 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Adsorption · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.0.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-katex-mhchem/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="vacancy.html" />
+    
+    
+    <link rel="prev" href="optimization.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">VASP how to</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="energy_molecule.html">
+            
+                <a href="energy_molecule.html">
+            
+                    
+                    Energy calculation of molecules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="energy_bulk.html">
+            
+                <a href="energy_bulk.html">
+            
+                    
+                    Energy calculation of bulk
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Geometry optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="adsorption.html">
+            
+                <a href="adsorption.html">
+            
+                    
+                    Adsorption
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="vacancy.html">
+            
+                <a href="vacancy.html">
+            
+                    
+                    Vacancy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="molecular_dynamics.html">
+            
+                <a href="molecular_dynamics.html">
+            
+                    
+                    Molecular dynamics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="transition_state.html">
+            
+                <a href="transition_state.html">
+            
+                    
+                    Transition state optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="dos.html">
+            
+                <a href="dos.html">
+            
+                    
+                    Density of state
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="charge.html">
+            
+                <a href="charge.html">
+            
+                    
+                    Charge analysis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Adsorption</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="adsorption">Adsorption</h1>
+<ul>
+<li>In this section, we will see how to calculate the adsorption energy.</li>
+<li>When we considering the catalytic reaction using surface, adsorption is the first event.</li>
+<li>Chemical species adsorbed on a surface is called <strong>adsorbates</strong>.</li>
+<li>Adsorbates will undergo the <strong>surface reaction</strong>, which is a reaction that employes the surface. Usually, a surface reaction is easier to occur than the corresponding gas-phase reaction.</li>
+<li>There are two types of the surface reaction; one is called <strong>Langmuir-Hinshelwood</strong> type and the other is <strong>Eley-Rideal</strong> type. The former is the reaction that occurs <em>between the adsorbed species</em>. In the latter, the reaction occurs <em>between the adsorbed species and the gas-phase species</em>.</li>
+<li><p>Therefore, we need to consider following four types of reactions along the adsorption event (the asterisk means the surface, and species with asterisk is the adsorbate).</p>
+</li>
+<li><p>Adsorption</p>
+</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">A</mi><mrow></mrow><mo>+</mo><mrow></mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow></mrow></mpadded></mover><mi mathvariant="normal">A</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow></mrow><annotation encoding="application/x-tex">
+\ce{A + surf -&gt; A-surf}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">A</span><span class="mord"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel x-arrow"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.622em;"><span style="top:-3.144em;"><span class="pstrut" style="height:2.522em;"></span><span class="sizing reset-size6 size3 mtight x-arrow-pad"><span class="mord mtight"></span></span></span><span class="svg-align" style="top:-2.511em;"><span class="pstrut" style="height:2.522em;"></span><span class="hide-tail" style="height:0.522em;min-width:1.469em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.522em" viewbox="0 0 400000 522" preserveaspectratio="xMaxYMin slice"><path d="M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.011em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm">A</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span></span></span></span></span></span></p>
+<ol>
+<li>Surface reaction (Langmuir-Hinshelwood)</li>
+</ol>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">A</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow><mrow></mrow><mo>+</mo><mrow></mrow><mi mathvariant="normal">B</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow></mrow></mpadded></mover><mi mathvariant="normal">C</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow></mrow><annotation encoding="application/x-tex">
+\ce{A-surf + B-surf -&gt; C-surf}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">A</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span><span class="mord"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"></span><span class="mord mathrm">B</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel x-arrow"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.622em;"><span style="top:-3.144em;"><span class="pstrut" style="height:2.522em;"></span><span class="sizing reset-size6 size3 mtight x-arrow-pad"><span class="mord mtight"></span></span></span><span class="svg-align" style="top:-2.511em;"><span class="pstrut" style="height:2.522em;"></span><span class="hide-tail" style="height:0.522em;min-width:1.469em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.522em" viewbox="0 0 400000 522" preserveaspectratio="xMaxYMin slice"><path d="M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.011em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm">C</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span></span></span></span></span></span></p>
+<ol>
+<li>Surface reaction (Eley-Rideal) </li>
+</ol>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">A</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow><mrow></mrow><mo>+</mo><mrow></mrow><mi mathvariant="normal">D</mi><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow></mrow></mpadded></mover><mi mathvariant="normal">E</mi></mrow><annotation encoding="application/x-tex">
+\ce{A-surf + D -&gt; E}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">A</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span><span class="mord"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"></span><span class="mord mathrm">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel x-arrow"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.622em;"><span style="top:-3.144em;"><span class="pstrut" style="height:2.522em;"></span><span class="sizing reset-size6 size3 mtight x-arrow-pad"><span class="mord mtight"></span></span></span><span class="svg-align" style="top:-2.511em;"><span class="pstrut" style="height:2.522em;"></span><span class="hide-tail" style="height:0.522em;min-width:1.469em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.522em" viewbox="0 0 400000 522" preserveaspectratio="xMaxYMin slice"><path d="M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.011em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm">E</span></span></span></span></span></span></p>
+<ol>
+<li>Desorption</li>
+</ol>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">F</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow></mrow></mpadded></mover><mi mathvariant="normal">F</mi><mrow></mrow><mo>+</mo><mrow></mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow></mrow><annotation encoding="application/x-tex">
+\ce{F-surf -&gt; F + surf}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">F</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel x-arrow"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.622em;"><span style="top:-3.144em;"><span class="pstrut" style="height:2.522em;"></span><span class="sizing reset-size6 size3 mtight x-arrow-pad"><span class="mord mtight"></span></span></span><span class="svg-align" style="top:-2.511em;"><span class="pstrut" style="height:2.522em;"></span><span class="hide-tail" style="height:0.522em;min-width:1.469em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.522em" viewbox="0 0 400000 522" preserveaspectratio="xMaxYMin slice"><path d="M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.011em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm">F</span><span class="mord"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">surf</span></span></span></span></span></span></span></p>
+<h2 id="calculating-adsorption-energy">Calculating adsorption energy</h2>
+<ul>
+<li>As an example, we will see how to calculate the hydrogen adsorption energy on the Ru surface.</li>
+<li>This reaction is important, for example, in the ammonia (NH3) formation reaction.</li>
+<li>We use the ASE to build the bare, adsorbate, and adsorbed surface.</li>
+</ul>
+<h3 id="ase-scripts">ASE scripts</h3>
+<ul>
+<li>The followings are the Python script using ASE.</li>
+</ul>
+<h4 id="1-simplest-approach">1. Simplest approach</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> ase <span class="hljs-keyword">import</span> Atom
+<span class="hljs-keyword">from</span> ase.io <span class="hljs-keyword">import</span> write
+<span class="hljs-keyword">from</span> ase.build <span class="hljs-keyword">import</span> hcp0001, add_adsorbate, molecule
+<span class="hljs-keyword">from</span> ase.visualize <span class="hljs-keyword">import</span> view
+
+surf = hcp0001(symbol=<span class="hljs-string">"Ru"</span>, size=[<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], a=<span class="hljs-number">2.7</span>, c=<span class="hljs-number">4.2</span>, vacuum=<span class="hljs-number">10.0</span>, periodic=<span class="hljs-literal">True</span>)
+clean_surface = surf.copy()
+
+add_adsorbate(slab=surf, adsorbate=Atom(<span class="hljs-string">"H"</span>), height=<span class="hljs-number">1.2</span>, position=<span class="hljs-string">"fcc"</span>)
+
+<span class="hljs-comment"># output H2 POSCAR</span>
+h2 = molecule(<span class="hljs-string">"H2"</span>)
+h2.cell = [<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>]
+h2.center()
+write(<span class="hljs-string">"POSCAR1"</span>, h2)
+
+<span class="hljs-comment"># output surface POSCAR</span>
+write(<span class="hljs-string">"POSCAR2"</span>, clean_surface)
+
+<span class="hljs-comment"># output H-adsorbed surface POSCAR</span>
+write(<span class="hljs-string">"POSCAR3"</span>, surf)
+</code></pre>
+<ul>
+<li>Advantage: easy</li>
+<li>Disadvantage: non-generalizable (especally for high Miller index surfaces)</li>
+</ul>
+<h4 id="2-general-approach">2. General approach</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> ase <span class="hljs-keyword">import</span> Atom
+<span class="hljs-keyword">from</span> ase.io <span class="hljs-keyword">import</span> write
+<span class="hljs-keyword">from</span> ase.build <span class="hljs-keyword">import</span> bulk, surface, add_adsorbate, molecule
+<span class="hljs-keyword">from</span> ase.visualize <span class="hljs-keyword">import</span> view
+
+bulk = bulk(name=<span class="hljs-string">"Ru"</span>, crystalstructure=<span class="hljs-string">"hcp"</span>, a=<span class="hljs-number">2.7</span>, b=<span class="hljs-number">2.7</span>, c=<span class="hljs-number">4.2</span>)
+surf = surface(lattice=bulk, indices=[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>], layers=<span class="hljs-number">2</span>, vacuum=<span class="hljs-number">10.0</span>)
+
+<span class="hljs-comment"># make surface a little bigger</span>
+surf = surf*[<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]
+
+add_adsorbate(slab=surf, adsorbate=Atom(<span class="hljs-string">"H"</span>), height=<span class="hljs-number">1.2</span>, offset=(<span class="hljs-number">0.22</span>, <span class="hljs-number">0.11</span>))
+...
+</code></pre>
+<ul>
+<li>Advantage: a bit complex</li>
+<li>Disadvantage: general</li>
+</ul>
+<h4 id="executing-vasp">Executing VASP</h4>
+<ul>
+<li>After generating the POSCAR files (here POSCAR1, POSCAR2, and POSCAR3), the VASP calculation can be done.</li>
+<li>Do not forget to make directories for each calculations, setup the KPOINTS and POTCAR files (by copying VASP potentials files; see previous sections).</li>
+<li>Geometry optimization calculation should be done.</li>
+<li>After the calculation, get the energies by takeing the value of <code>energy(sigma-&gt;0)</code>.</li>
+<li>Then the adsorption energy (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{\rm ads}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">ads</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) can be calculated as</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow></msub><mo>=</mo><msub><mi>E</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi><mo>−</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow></msub><mo>−</mo><mrow><mo fence="true">(</mo><msub><mi>E</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">f</mi></mrow></msub><mo>+</mo><msub><mi>E</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+E_{\rm ads} = E_{\rm surf-ads} - \left(E_{\rm surf} + E_{\rm adsorbate}\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">ads</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.07778em;">surf</span><span class="mbin mtight">−</span><span class="mord mathrm mtight">ads</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.07778em;">surf</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">adsorbate</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
+<ul>
+<li>Therefore in this case, the adsortion energy is</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow></msub><mo>=</mo><msub><mi>E</mi><mrow><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">u</mi></mrow><mo lspace="0em" rspace="0em">−</mo><mi mathvariant="normal">H</mi></mrow></msub><mo>−</mo><mrow><mo fence="true">(</mo><msub><mi>E</mi><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">u</mi></mrow></msub><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>E</mi><mrow><mi mathvariant="normal">H</mi><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub></mrow></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+E_{\rm ads} = E_\ce{Ru-H} - \left(E_\ce{Ru} + \frac{1}{2}E_\ce{H2}\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">ads</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">Ru</span></span><span class="mord mtight"><span class="mord mtight">−</span></span><span class="mord mathrm mtight">H</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">Ru</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">H</span><span class="mord mtight"><span class="mord mtight"><span class="mord rlap mtight"><span class="inner"><span class="mord mtight" style="color:transparent;"><span class="mord mathnormal mtight" style="margin-right:0.07847em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.143em;"><span style="top:-2.357em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.5em;"><span class="pstrut" style="height:2.5em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span></p>
+<ul>
+<li>The reference adsorption energy is -0.63 eV (fcc hollow). Compare with your calculated value.
+<a href="https://www.researchgate.net/figure/Adsorption-sites-for-H-on-the-Ru0001-surface-with-corresponding-energies-of-adsorption_fig1_340125395" target="_blank">https://www.researchgate.net/figure/Adsorption-sites-for-H-on-the-Ru0001-surface-with-corresponding-energies-of-adsorption_fig1_340125395</a></li>
+</ul>
+<h3 id="advanced-topic">Advanced topic</h3>
+<ul>
+<li>You can load several files using <code>ase.io.read</code>, to make a variety of surface-adsorbate pairs.</li>
+<li>In the following, we consider the benzene adsorption on the Si surface.</li>
+<li>Assuming that we have the coordinate of benzene ("benzene.xyz") and that of bulk Si ("si.cif"). There are available from many sources (such as PubChem, Materials Project).</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> ase <span class="hljs-keyword">import</span> Atom
+<span class="hljs-keyword">from</span> ase.io <span class="hljs-keyword">import</span> read, write
+<span class="hljs-keyword">from</span> ase.build <span class="hljs-keyword">import</span> bulk, surface, add_adsorbate, molecule
+<span class="hljs-keyword">from</span> ase.visualize <span class="hljs-keyword">import</span> view
+
+bulk = read(<span class="hljs-string">"./files/si.cif"</span>)
+surf = surface(lattice=bulk, indices=[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>], layers=<span class="hljs-number">2</span>, vacuum=<span class="hljs-number">10.0</span>)
+surf = surf*[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]
+
+adsorbate = read(<span class="hljs-string">"benzene.xyz"</span>)
+add_adsorbate(slab=surf, adsorbate=adsorbate, height=<span class="hljs-number">2.0</span>, offset=(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>))
+
+view(surf)
+</code></pre>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Calculate the adsorption energy on other sites. The "hollow" keyword in <code>add_adsorbate</code> for hcp0001 puts adsorbate on the fcc hollow site. Use other keywords such as "ontop" or "bridge", and compare with the reference.</li>
+<li>Adjust the <code>offset</code> value in the <code>add_adsorbate</code>, and put the H atom to the hcp hollow site. Then calculate the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{\rm ads}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">ads</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="optimization.html" class="navigation navigation-prev " aria-label="Previous page: Geometry optimization">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="vacancy.html" class="navigation navigation-next " aria-label="Next page: Vacancy">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Adsorption","level":"1.5","depth":1,"next":{"title":"Vacancy","level":"1.6","depth":1,"path":"markdown/english/vacancy.md","ref":"./markdown/english/vacancy.md","articles":[]},"previous":{"title":"Geometry optimization","level":"1.4","depth":1,"path":"markdown/english/optimization.md","ref":"./markdown/english/optimization.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/english/adsorption.md","mtime":"2024-11-26T06:44:51.200Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-28T07:42:06.023Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-katex-mhchem/katex.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

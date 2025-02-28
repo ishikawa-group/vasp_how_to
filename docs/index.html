@@ -60,7 +60,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="english/energy_molecule.md" />
+    <link rel="next" href="markdown/english/energy_molecule.html" />
     
     
 
@@ -88,6 +88,8 @@
 
     
         
+        <li class="header">VASP how to</li>
+        
         
     
         <li class="chapter active" data-level="1.1" data-path="./">
@@ -103,9 +105,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="english/energy_molecule.md">
+        <li class="chapter " data-level="1.2" data-path="markdown/english/energy_molecule.html">
             
-                <span>
+                <a href="markdown/english/energy_molecule.html">
             
                     
                     Energy calculation of molecules
@@ -116,9 +118,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="english/energy_bulk.md">
+        <li class="chapter " data-level="1.3" data-path="markdown/english/energy_bulk.html">
             
-                <span>
+                <a href="markdown/english/energy_bulk.html">
             
                     
                     Energy calculation of bulk
@@ -129,9 +131,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="english/optimization.md">
+        <li class="chapter " data-level="1.4" data-path="markdown/english/optimization.html">
             
-                <span>
+                <a href="markdown/english/optimization.html">
             
                     
                     Geometry optimization
@@ -142,9 +144,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="english/adsorption.md">
+        <li class="chapter " data-level="1.5" data-path="markdown/english/adsorption.html">
             
-                <span>
+                <a href="markdown/english/adsorption.html">
             
                     
                     Adsorption
@@ -155,9 +157,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="english/vacancy.md">
+        <li class="chapter " data-level="1.6" data-path="markdown/english/vacancy.html">
             
-                <span>
+                <a href="markdown/english/vacancy.html">
             
                     
                     Vacancy
@@ -168,9 +170,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="english/molecular_dynamics.md">
+        <li class="chapter " data-level="1.7" data-path="markdown/english/molecular_dynamics.html">
             
-                <span>
+                <a href="markdown/english/molecular_dynamics.html">
             
                     
                     Molecular dynamics
@@ -181,9 +183,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="english/transition_state.md">
+        <li class="chapter " data-level="1.8" data-path="markdown/english/transition_state.html">
             
-                <span>
+                <a href="markdown/english/transition_state.html">
             
                     
                     Transition state optimization
@@ -194,9 +196,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9" data-path="english/dos.md">
+        <li class="chapter " data-level="1.9" data-path="markdown/english/dos.html">
             
-                <span>
+                <a href="markdown/english/dos.html">
             
                     
                     Density of state
@@ -207,9 +209,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="english/charge.md">
+        <li class="chapter " data-level="1.10" data-path="markdown/english/charge.html">
             
-                <span>
+                <a href="markdown/english/charge.html">
             
                     
                     Charge analysis
@@ -265,23 +267,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <ul>
+                                <h1 id="vasp-how-to">VASP how to</h1>
+<h2 id="introduction">Introduction</h2>
+<ul>
 <li>This repository is for those who want to learn the DFT (density functional theory) calculations using VASP.</li>
 <li>VASP stands for Vienna ab initio simulation package, and it is the software package to do the DFT calculation with plane-wave basis set.</li>
-<li><p>For beginners in the DFT to do VASP, learn by the following order:</p>
+<li>For beginners in the DFT to do VASP, learn by the following order</li>
+</ul>
+<h2 id="contents">Contents</h2>
 <ol>
 <li><a href="https://github.com/ishikawa-group/gaussian_how_to/blob/main/linux.md" target="_blank">Linux (jumps to a file in other repository)</a></li>
-<li><a href="english/energy_molecule.md">Energy calculation of molecule</a></li>
-<li><a href="english/energy_bulk.md">Energy calculation of bulk and surface</a></li>
-<li><a href="english/optimize.md">Geometry optimization</a></li>
-<li><a href="english/vacancy.md">Atomic vacancy</a></li>
-<li><a href="english/molecular_dynamics.md">Molecular dynamics</a></li>
-</ol>
+<li><a href="markdown/english/energy_molecule.html">Energy calculation of molecule</a></li>
+<li><a href="markdown/english/energy_bulk.html">Energy calculation of bulk and surface</a></li>
+<li><a href="markdown/english/optimization.html">Geometry optimization</a></li>
+<li><a href="markdown/english/vacancy.html">Atomic vacancy</a></li>
+<li><p><a href="markdown/english/molecular_dynamics.html">Molecular dynamics</a></p>
 </li>
 <li><p>Followings should be seen if necessary:</p>
 <ul>
 <li><a href="https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md" target="_blank">tsubame.md (jumps to a file in other repository)</a></li>
-<li><a href="compile/compile_en.md">compile.md (Japanese only)</a></li>
+<li><a href="markdown/compile/compile_jp.md">compile.md (Japanese only)</a></li>
 </ul>
 </li>
 <li><p>The <code>test</code> directory contains input files for a simple VASP calculaiton. You can use it to check your VASP compiation is correctly done or not.
@@ -290,7 +295,7 @@ These examples are selected from VASP wiki.</p>
 <li>CO molecule geometry optimization: <a href="https://www.vasp.at/wiki/index.php/CO" target="_blank">https://www.vasp.at/wiki/index.php/CO</a></li>
 </ul>
 </li>
-</ul>
+</ol>
 
                                 
                                 </section>
@@ -319,7 +324,7 @@ These examples are selected from VASP wiki.</p>
             
                 
                 
-                <a href="english/energy_molecule.md" class="navigation navigation-next navigation-unique" aria-label="Next page: Energy calculation of molecules">
+                <a href="markdown/english/energy_molecule.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Energy calculation of molecules">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +335,7 @@ These examples are selected from VASP wiki.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Energy calculation of molecules","level":"1.2","depth":1,"path":"english/energy_molecule.md","ref":"english/energy_molecule.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2025-02-27T14:04:05.607Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-28T03:37:00.139Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Energy calculation of molecules","level":"1.2","depth":1,"path":"markdown/english/energy_molecule.md","ref":"./markdown/english/energy_molecule.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2025-02-28T07:39:57.508Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-28T07:42:06.023Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
