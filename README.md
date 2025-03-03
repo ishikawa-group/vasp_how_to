@@ -9,9 +9,11 @@
 2. [Energy calculation of molecule](./markdown/english/energy_molecule.md)
 3. [Energy calculation of bulk and surface](./markdown/english/energy_bulk.md)
 4. [Geometry optimization](./markdown/english/optimization.md)
-5. [Atomic vacancy](./markdown/english/vacancy.md)
+5. [Adsorption](./markdown/english/adsorption.md)
 6. [Molecular dynamics](./markdown/english/molecular_dynamics.md)
+7. [Atomic vacancy](./markdown/english/vacancy.md)
 
+## Other topics
 * Followings should be seen if necessary:
   + [tsubame.md (jumps to a file in other repository)](https://github.com/ishikawa-group/gaussian_how_to/blob/main/tsubame.md)
   + [compile.md (Japanese only)](./markdown/compile/compile_jp.md)
