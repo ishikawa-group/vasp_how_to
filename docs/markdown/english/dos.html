@@ -270,15 +270,71 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="density-of-state-dos">Density of state (DOS)</h1>
+<h2 id="introduction">Introduction</h2>
 <ul>
-<li>DOS represents how densely the orbitals are packed in each energy range.</li>
-<li>A larger value of DOS means that the states are more densely packed in that energy range.</li>
+<li>Density of States (DOS) represents the number of available electronic states at some energy.</li>
+<li>It is a fundamental concept in solid-state physics and materials science, providing crucial information about the electronic structure and properties of materials.</li>
 </ul>
-<h2 id="input-file">Input file</h2>
+<h2 id="physical-meaning-of-dos">Physical meaning of DOS</h2>
+<h3 id="fundamental-concept">Fundamental concept</h3>
+<ul>
+<li>DOS represents the number of states available for electron occupation at energy <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>.</li>
+<li>Higher DOS indicates more states available for electron occupation, which is often useful for electronic conduction, making/breaking chemical bonds, magnetization etc.</li>
+<li>The energy region with (1) non-zero DOS, (2) below the Fermi energy is called the <em>valence band</em>, and the region with (1) non-zero DOS, (2) above the Fermi energy is called the <em>conduction band</em>. The zero-DOS region between the valence and conduction bands are called the <em>band gap</em>.</li>
+</ul>
+<div align="center">
+<img src="../../figure/dos.png" width="60%"></img>
+</div>
+
+<h3 id="mathematical-definition">Mathematical Definition</h3>
+<ul>
+<li>Formal definition:
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mi>O</mi><mi>S</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mi>i</mi><mi>k</mi></munderover><mi>δ</mi><mo stretchy="false">(</mo><mi>E</mi><mo>−</mo><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  DOS(E) = \sum_i^k \delta(E - \varepsilon_{i,k})
+  </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.05764em;">OS</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.1138em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
+where:<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\varepsilon_{i,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>: the energy eigenvalues</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> runs over bands</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> runs over k-points in the Brillouin zone</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span> is the Dirac delta function</li>
+</ul>
+</li>
+<li>In practice, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span> function is replaced by a finite energy range (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>), so the DOS means the number of electronic state within this energy gap.</li>
+</ul>
+<h3 id="integration-properties">Integration Properties</h3>
+<ul>
+<li>Number of electrons:
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mo>=</mo><msup><mo>∫</mo><msub><mi>E</mi><mi>F</mi></msub></msup><mi>D</mi><mi>O</mi><mi>S</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mi>d</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">
+N = \int^{E_F} DOS(E)dE
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4535em;vertical-align:-0.8622em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.5912em;"><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0576em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.05764em;">OS</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span></span></li>
+<li>Total energy:
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><msup><mo>∫</mo><msub><mi>E</mi><mi>F</mi></msub></msup><mi>E</mi><mo>⋅</mo><mi>D</mi><mi>O</mi><mi>S</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mi>d</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">
+E = \int^{E_F} E \cdot DOS(E)dE
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4535em;vertical-align:-0.8622em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.5912em;"><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0576em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.05764em;">OS</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">E_F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the Fermi energy.</li>
+</ul>
+<h2 id="practical-dos-calculations">Practical DOS Calculations</h2>
+<h3 id="detailed-calculation-steps">Detailed Calculation Steps</h3>
+<ul>
+<li>Usually, the geometry optimization is done before the DOS calculation.</li>
+<li>If the <code>LDOS</code> tag is set to <code>.TRUE.</code>, the DOS calculation is done at the last step of geometry optimization. So separate single-point calculation at the optimized geometry is usally not necessary.</li>
+<li>If you want to do DOS calculation at higher k-point mesh or higher cutoff energy, you can take the separate calculation.</li>
+</ul>
+<h3 id="incar">INCAR</h3>
 <ul>
 <li>No specifical tag is necessary to output the total DOS, but <code>LORBIT</code> need to be set when PDOS is needed (mentioned later).</li>
 <li>Note that the correct DOS cannot be obtained unless the number of k-points is sufficiently large.</li>
-<li>The smearing parameters in the <code>INCAR</code> (ISMEAR, SIGMA) also affect the accuracy of the DOS.</li>
+<li><p>The smearing parameters in the <code>INCAR</code> (ISMEAR, SIGMA) also affect the accuracy of the DOS.</p>
+</li>
+<li><p>Structure Optimization:</p>
+<pre><code>IBRION = 2    # Ion relaxation
+NSW = 100     # Number of ionic steps
+</code></pre></li>
+<li><p>DOS Calculation:</p>
+<pre><code>IBRION = 0
+NSW    = 0
+LDOS   = .TRUE.  # actually this is default
+</code></pre></li>
 </ul>
 <h2 id="after-vasp-calculation">After VASP calculation</h2>
 <ul>
@@ -314,7 +370,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="plot">Plot</h2>
+<h2 id="plotting-the-dos">Plotting the DOS</h2>
 <ul>
 <li>Copy <code>*.dat</code> file generated from vaspkit. Now it is easy to make plot.</li>
 <li>Any software (Excel, Gnuplot, etc) is OK.</li>
@@ -324,20 +380,22 @@
 </code></pre>
 </li>
 </ul>
-<h2 id="pdos">PDOS</h2>
+<h2 id="projected-dos-pdos">Projected DOS (PDOS)</h2>
 <ul>
-<li>The projected DOS (PDOS) refers to the DOS decomposed by angular momentum (s, p, d, etc.).</li>
+<li>The PDOS refers to the DOS decomposed by angular momentum (s, p, d, etc.).</li>
 <li>To get the PDOS, use <code>LORBIT</code> tag in <code>INCAR</code>.<ul>
 <li><code>LORBIT = 10</code>: makes s-, p-, d-decomposed DOSs.</li>
 <li><code>LORBIT = 11</code>: makes s-, px-, py-, pz-, dxy- ... DOSs.</li>
 </ul>
 </li>
 <li>Plotting procedure is same with the total DOS.</li>
+<li>If you want to take the information of the d-band (to calculate the d-band center, for example), you should use PDOS.</li>
 </ul>
-<h2 id="ldos">LDOS</h2>
+<h2 id="localized-dos-ldos">Localized DOS (LDOS)</h2>
 <ul>
-<li>The localized DOS (LDOS) refers to the DOS calculated separately for each atom.</li>
+<li>LDOS refers to the DOS calculated separately for each atom.</li>
 <li>LDOS can be obtained from <code>vaspkit</code>.</li>
+<li>If you want to focus on the oxygen atom 2p band (often denoted as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">O</mi><mrow><mn>2</mn><mi mathvariant="normal">p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\rm {O}_{2p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathrm">O</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">2p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span> band), both localization and projection is needed.</li>
 </ul>
 
                                 
@@ -382,7 +440,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Density of state","level":"1.9","depth":1,"next":{"title":"Charge analysis","level":"1.10","depth":1,"path":"markdown/english/charge.md","ref":"./markdown/english/charge.md","articles":[]},"previous":{"title":"Transition state optimization","level":"1.8","depth":1,"path":"markdown/english/transition_state.md","ref":"./markdown/english/transition_state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/english/dos.md","mtime":"2025-03-05T06:35:42.076Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-05T07:22:57.502Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Density of state","level":"1.9","depth":1,"next":{"title":"Charge analysis","level":"1.10","depth":1,"path":"markdown/english/charge.md","ref":"./markdown/english/charge.md","articles":[]},"previous":{"title":"Transition state optimization","level":"1.8","depth":1,"path":"markdown/english/transition_state.md","ref":"./markdown/english/transition_state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with","katex-mhchem"],"pluginsConfig":{"hide-published-with":{},"katex-mhchem":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/english/dos.md","mtime":"2025-03-05T07:28:01.153Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-05T07:28:11.394Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
