@@ -12,7 +12,7 @@
 5. [Adsorption](./markdown/english/adsorption.md)
 6. [Molecular dynamics](./markdown/english/molecular_dynamics.md)
 7. [Atomic vacancy](./markdown/english/vacancy.md)
-8. [Densit of state](./markdown/english/dos.md)
+8. [Density of state](./markdown/english/dos.md)
 
 ## Other topics
 * Followings should be seen if necessary:
